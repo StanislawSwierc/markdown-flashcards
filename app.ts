@@ -86,6 +86,28 @@ export function parse(text: string): Deck {
       continue;
     }
 
+    if (node.tagName === "TABLE") {
+      for(let row of Array.from(node.querySelectorAll("TR"))) {
+        let card = <Card>{
+          front: "",
+          back: ""
+        };
+        let first = true;
+        for(let col of Array.from(row.querySelectorAll("TD"))) {
+          if (first) {
+            card.front += `<p>${col.innerHTML}</p>`;
+            first = false;
+          } else {
+            card.back += `<p>${col.innerHTML}</p>`;
+          }
+        }
+        if (!first) {
+          section.cards.push(card);
+        }
+      }
+      continue;
+    }
+
     if (node.tagName === "P" && /\s*\?\s*/.test(node.innerHTML)) {
       state = State.Back;
       continue;
