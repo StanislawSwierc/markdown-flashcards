@@ -1,0 +1,27 @@
+{
+  "name": "markdown-flashcards",
+  "version": "1.0.0",
+  "description": "Markdown format for flashcards.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha --require ts-node/register test/**/*.ts"
+  },
+  "author": "Stanislaw Swierc (stanislaw.swierc@gmail.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/jsdom": "^12.2.3",
+    "@types/marked": "^0.6.5",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "front-matter": "^3.0.2",
+    "jsdom": "^15.1.1",
+    "marked": "^0.6.2",
+    "mocha": "^6.1.4",
+    "ts-node": "^8.2.0",
+    "typescript": "^3.5.1"
+  },
+  "dependencies": {
+    "anki-apkg-export": "^4.0.2"
+  }
+}
