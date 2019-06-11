@@ -2,7 +2,6 @@ import * as marked from "marked"
 import * as jsdom from "jsdom"
 import * as fs from "fs"
 import * as parseFrontMatter from "front-matter"
-import AnkiExport from "anki-apkg-export"
 
 interface Card {
   front: string,
@@ -48,11 +47,7 @@ export function parse(text: string): Deck {
   let description = "";
   let state = State.DeckDescription;
 
-  let nodes = dom.window.document.body.children;
-  for (let i = 0; i < nodes.length; i++) {
-    let node = nodes[i];
-    let text = node.outerHTML;
-
+  for (let node of Array.from(dom.window.document.body.children)) {
     if (node.tagName === "H1") {
       // Use the first title set.
       if (!deck.title) {
@@ -113,6 +108,7 @@ export function parse(text: string): Deck {
       continue;
     }
 
+    let text = node.outerHTML;
     switch (state) {
       case State.DeckDescription:
         description += text;
@@ -144,15 +140,3 @@ export function parse(text: string): Deck {
 
   return deck;
 }
-
-
-
-let apkg = new AnkiExport('my deck');
-// apkg.addCard('card #3 with image <img src="anki.png" />', 'card #3 back');
-
-apkg.save()
-  .then(zip => {
-    fs.writeFileSync('./output.apkg', zip, 'binary');
-    console.log(`Package has been generated: output.pkg`);
-  })
-  .catch(err => console.log(err.stack || err));
