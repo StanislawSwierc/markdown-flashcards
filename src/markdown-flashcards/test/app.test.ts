@@ -117,6 +117,43 @@ back :arrow_right_hook:
         expect(card.back).to.equal("<p>back ↪️</p>");
     })
 
+    it('can process cards with math equations', () => {
+        let text = `
+---
+
+Inline math expression: $y(x) = ax + b$
+
+?
+
+back 1
+
+---
+
+Block math expression:
+
+$$ y(x) = ax + b $$
+
+?
+
+back 2
+
+---
+`
+        let deck = app.parse(text);
+        expect(deck.sections.length).to.equal(1);
+
+        let section = deck.sections[0];
+        expect(section.cards.length).to.equal(2);
+
+        let card = section.cards[0]
+        expect(card.front).to.equal('<p>Inline math expression: <math><mi>y</mi><mfenced open="(" close=")"><mi>x</mi></mfenced><mo>=</mo><mrow><mi>a</mi><mi>x</mi></mrow><mo>+</mo><mi>b</mi></math></p>');
+        expect(card.back).to.equal("<p>back 1</p>");
+
+        card = section.cards[1]
+        expect(card.front).to.equal('<p>Block math expression:</p><math display="block"><mi>y</mi><mfenced open="(" close=")"><mi>x</mi></mfenced><mo>=</mo><mrow><mi>a</mi><mi>x</mi></mrow><mo>+</mo><mi>b</mi></math>');
+        expect(card.back).to.equal("<p>back 2</p>");
+    })
+
     it('can process canonical deck with table', () => {
         let text = `
 # title

@@ -3,6 +3,10 @@ import * as emoji from "markdown-it-emoji"
 import * as jsdom from "jsdom"
 import * as fs from "fs"
 import * as parseFrontMatter from "front-matter"
+import * as math from "markdown-it-math"
+
+
+
 
 
 interface Card {
@@ -34,6 +38,12 @@ let md = new Markdown({
   html: true,
 });
 md.use(emoji);
+md.use(math, {
+  inlineOpen: '$',
+  inlineClose: '$',
+  blockOpen: '$$',
+  blockClose: '$$',
+})
 
 export function parse(text: string): Deck {
 
