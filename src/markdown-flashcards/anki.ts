@@ -7,7 +7,7 @@ import * as app from "./app"
 //     console.log(`Package has been generated: output.pkg`);
 //   })
 //   .catch(err => console.log(err.stack || err));
-export function transform(text : string) : Promise<any> {
+export function transform(text : string) : Promise<Buffer> {
     let deck = app.parse(text);
      
     let apkg = new AnkiExport(deck.title);

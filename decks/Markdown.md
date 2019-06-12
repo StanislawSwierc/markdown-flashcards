@@ -177,7 +177,7 @@ Ordered list with long paragraphs.
 
 ?
 
-Indent all the lines with 3-4 spaces or a single tab.
+Indent all the lines with 3 spaces or a single tab.
 ```md
 1. First sentence of the first paragrap.
    Second lentence.
@@ -197,7 +197,7 @@ Ordered list with sub-list
 
 ?
 
-Indent sub-list with 3-4 spaces or a single tab.
+Indent sub-list with 3 spaces or a single tab.
 ```md
 1. First item
    1. First sub-item (spaces)
@@ -215,7 +215,7 @@ Mixed ordered and bullet lists
 
 ?
 
-Indent sub-list with 3-4 spaces or a single tab.
+Indent sub-list with 3 spaces or a single tab.
 ```md
 1. First ordered item
    - First unordered sub-item
@@ -752,16 +752,17 @@ Inline math expression: $y(x) = ax + b$
 
 Block with math equation
 
-$$
-y(x) = ax + b
-$$
+$$ y(x) = ax + b $$
 
 ?
 
-Math equation blocks should be fenced by lines with two dollar '`$$`' signs.
+Math equation blocks should be surrounded with two dollar '`$$`' signs. You can write them in a single or multiple lines (fenced style).
 ```md
-$$
-y(x) = ax + b
+$$ y(x) = ax + b $$
+```
+```md
+$$ 
+y(x) = ax + b 
 $$
 ```
 
@@ -769,17 +770,13 @@ $$
 
 Block with math equation and numbering
 
-$$
-y(x) = ax + b
-$$ (1)
+$$ y(x) = ax + b $$ (1)
 
 ?
 
-To add number to the math block add number in parentheses to the closing line ('`$$ (1)`').
+To add number to the math block add number in parentheses to the closing mark ('`$$ (1)`').
 ```md
-$$
-y(x) = ax + b
-$$ (1)
+$$ y(x) = ax + b $$ (1)
 ```
 
 ---
@@ -793,16 +790,16 @@ While not so common, some editors allow for raw HTML in your Markdown.
 Inline HTML
 
 <dl>
-  <dt>Definition list example</dt>
-  <dd>A definition list is similar to other lists but in a definition list, each list item contains two entries: a term and a description.</dd>
+  <dt>HTML definition list</dt>
+  <dd>In a definition list, each list item contains two entries: a term and a description.</dd>
 </dl>
 
 ?
 
 ```html
 <dl>
-  <dt>Definition list</dt>
-  <dd>A definition list is similar to other lists but in a definition list, each list item contains two entries: a term and a description.</dd>
+  <dt>HTML definition list</dt>
+  <dd>In a definition list, each list item contains two entries: a term and a description.</dd>
 
   <dt>Markdown in HTML</dt>
   <dd>Once in HTML you cannot use Markdown syntax (e.g. *not*, **very**). Instead you have to rely entirely on <strong>HTML tags</strong>.</dd>

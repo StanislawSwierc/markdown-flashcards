@@ -95,8 +95,6 @@ front :arrow_right_hook:
 back :arrow_right_hook:
 
 ---
-
-
 `
         let deck = app.parse(text);
         expect(deck.sections.length).to.equal(1);
