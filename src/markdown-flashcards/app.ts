@@ -1,7 +1,9 @@
-import * as marked from "marked"
+import * as Markdown from "markdown-it"
+import * as emoji from "markdown-it-emoji"
 import * as jsdom from "jsdom"
 import * as fs from "fs"
 import * as parseFrontMatter from "front-matter"
+
 
 interface Card {
   front: string,
@@ -28,10 +30,15 @@ enum State {
   Back
 }
 
+let md = new Markdown({
+  html: true,
+});
+md.use(emoji);
+
 export function parse(text: string): Deck {
 
   let doc = parseFrontMatter(text);
-  let html = marked(doc.body);
+  let html = md.render(doc.body);
   let dom = new jsdom.JSDOM(html);
 
   let deck = <Deck>{
@@ -103,7 +110,7 @@ export function parse(text: string): Deck {
       continue;
     }
 
-    if (node.tagName === "P" && /\s*\?\s*/.test(node.innerHTML)) {
+    if (node.tagName === "P" && /^\s*(\?|❓|❔|↪️)\s*$/.test(node.innerHTML)) {
       state = State.Back;
       continue;
     }

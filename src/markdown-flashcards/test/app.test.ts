@@ -25,9 +25,6 @@ back 1
 front 2
 
 ?   
-:question:
-:grey_question:
-:arrow_right_hook:
 
 back 2
 
@@ -70,6 +67,55 @@ back
         let section = deck.sections[0];
         expect(section.cards.length).to.equal(1);
     });
+
+    it('can process cards with emojis', () => {
+        let text = `
+---
+
+front :question:
+
+:question:
+
+back :question:
+
+---
+
+front :grey_question:
+
+:grey_question:
+
+back :grey_question:
+
+---
+
+front :arrow_right_hook:
+
+:arrow_right_hook:
+
+back :arrow_right_hook:
+
+---
+
+
+`
+        let deck = app.parse(text);
+        expect(deck.sections.length).to.equal(1);
+
+        let section = deck.sections[0];
+        expect(section.cards.length).to.equal(3);
+
+        let card = section.cards[0]
+        expect(card.front).to.equal("<p>front ❓</p>");
+        expect(card.back).to.equal("<p>back ❓</p>");
+
+        card = section.cards[1]
+        expect(card.front).to.equal("<p>front ❔</p>");
+        expect(card.back).to.equal("<p>back ❔</p>");
+
+        card = section.cards[2]
+        expect(card.front).to.equal("<p>front ↪️</p>");
+        expect(card.back).to.equal("<p>back ↪️</p>");
+    })
 
     it('can process canonical deck with table', () => {
         let text = `
