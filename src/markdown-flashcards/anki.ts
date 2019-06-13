@@ -1,5 +1,6 @@
 import AnkiExport from "anki-apkg-export"
 import * as app from "./app"
+import * as fs from "fs"
 
 // apkg.save()
 //   .then(zip => {
@@ -7,14 +8,41 @@ import * as app from "./app"
 //     console.log(`Package has been generated: output.pkg`);
 //   })
 //   .catch(err => console.log(err.stack || err));
-export function transform(text : string) : Promise<Buffer> {
-    let deck = app.parse(text);
-     
-    let apkg = new AnkiExport(deck.title);
+export async function transform(text: string): Promise<Buffer> {
+    let markdownCSS = await fs.promises.readFile('./node_modules/github-markdown-css/github-markdown.css', 'utf8');
+    let katexCSS = await fs.promises.readFile('./node_modules/katex/dist/katex.min.css', 'utf8');
+    let template = {
+        questionFormat: `
+<div class="markdown-body">
+    {{Front}}
+</div>
+`,
+        answerFormat: `
+<div class="markdown-body">
+    {{Front}}
+    <hr id="answer">
+    {{Back}}
+</div>
+`,
+        css: `
+.card {
+    font-size: 20px;
+    background-color: white;
+}
 
-    for(let section of deck.sections) {
+${markdownCSS}
+${katexCSS}
+`
+    }
+
+
+    let deck = app.parse(text);
+    let apkg = new AnkiExport(deck.title, template);
+
+
+    for (let section of deck.sections) {
         let tags = [section];
-        for(let card of section.cards) {
+        for (let card of section.cards) {
             apkg.addCard(
                 card.front,
                 card.back,
@@ -22,9 +50,9 @@ export function transform(text : string) : Promise<Buffer> {
             )
         }
     }
-    
 
-// apkg.addCard('card #3 with image <img src="anki.png" />', 'card #3 back');
+
+    // apkg.addCard('card #3 with image <img src="anki.png" />', 'card #3 back');
 
     return apkg.save();
 }

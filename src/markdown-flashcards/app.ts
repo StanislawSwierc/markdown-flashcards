@@ -1,12 +1,9 @@
 import * as Markdown from "markdown-it"
 import * as emoji from "markdown-it-emoji"
 import * as jsdom from "jsdom"
-import * as fs from "fs"
 import * as parseFrontMatter from "front-matter"
-import * as math from "markdown-it-math"
-
-
-
+import * as katex from "katex"
+import * as texmath from "markdown-it-texmath"
 
 
 interface Card {
@@ -35,15 +32,11 @@ enum State {
 }
 
 let md = new Markdown({
-  html: true,
-});
-md.use(emoji);
-md.use(math, {
-  inlineOpen: '$',
-  inlineClose: '$',
-  blockOpen: '$$',
-  blockClose: '$$',
-})
+    html: true,
+  })
+  .use(emoji)
+  .use(texmath
+    .use(katex));
 
 export function parse(text: string): Deck {
 

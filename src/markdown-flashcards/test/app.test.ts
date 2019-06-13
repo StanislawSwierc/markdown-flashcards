@@ -119,7 +119,7 @@ back :arrow_right_hook:
         let text = `
 ---
 
-Inline math expression: $y(x) = ax + b$
+Inline math expression: $c = \\pm\\sqrt{a^2 + b^2}$
 
 ?
 
