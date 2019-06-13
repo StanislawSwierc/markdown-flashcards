@@ -10,8 +10,6 @@ Second paragraph
 
 ?
 
-:arrows_counterclockwise:
-
 A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines (containing nothing but spaces or tabs).
 
 ```
@@ -34,9 +32,9 @@ aliqua.
 Long paragraphs can be split into multiple lines provided there is no blank line between them.
 
 ```md
-Lorem ipsum dolor sit amet, consectetur
-adipiscing elit, sed do eiusmod tempor 
-incididunt ut labore et dolore magna 
+Lorem ipsum dolor sit amet, consectetur↵
+adipiscing elit, sed do eiusmod tempor↵
+incididunt ut labore et dolore magna↵
 aliqua.
 ```
 
@@ -53,8 +51,8 @@ Third line
 To break a line it should be followed by two or more spaces or be terminated with a backslash character '`\`'.
 
 ```md
-First line with two trailing spaces..
-Second line with backslash\
+First line with two trailing spaces..↵
+Second line with backslash\↵
 Third line
 ```
 
@@ -177,10 +175,10 @@ Ordered list with long paragraphs.
 
 ?
 
-Indent all the lines with 3 spaces or a single tab.
+Align all sentences with the beginning of first one by indenting them with 3 spaces. You can also use a single tab instead.
 ```md
 1. First sentence of the first paragrap.
-   Second lentence.
+   Second sentence.
 
    Second paragrap.
 
@@ -197,7 +195,7 @@ Ordered list with sub-list
 
 ?
 
-Indent sub-list with 3 spaces or a single tab.
+Align sub-list with the beginning one the parent item by indenting it with 3 spaces. You can also use a single tab instead.
 ```md
 1. First item
    1. First sub-item (spaces)
@@ -215,7 +213,7 @@ Mixed ordered and bullet lists
 
 ?
 
-Indent sub-list with 3 spaces or a single tab.
+Align sub-list with the beginning one the parent item by indenting it with 3 spaces. You can also use a single tab instead.
 ```md
 1. First ordered item
    - First unordered sub-item
@@ -406,6 +404,7 @@ Reference-style verbatim number link [2]
 Inline-style image by a full URL  
 ![](https://www.iconfinder.com/icons/298823/download/png/48)
 
+?
 
 ```md
 Inline-style image by a full URL  
@@ -466,6 +465,7 @@ Inline-style image with alternative text
 Inline-style image with title (hover over)  
 ![](logo_48.png "Markdown Logo")
 
+?
 
 ```md
 Inline-style image with title (hover over)  
@@ -481,6 +481,7 @@ Reference-style image
 [logo_local]: logo_48.png
 [logo_url]: https://www.iconfinder.com/icons/298823/download/png/48
 
+?
 
 ```md
 Reference-style image  
@@ -738,45 +739,51 @@ Math equations can be constructed using LaTeX syntax (e.g. [LaTeX/Mathematics](h
 
 ---
 
-Inline math expression: $y(x) = ax + b$
+Inline math expression: $c = \sqrt{a^2 + b^2}$
 
 ?
 
 Inline math expressions can be formatted by surrounding them with '`$`' characters.
 
 ```
-Inline math expression: $y(x) = ax + b$
+Inline math expression: $c = \sqrt{a^2 + b^2}$
 ```
 
 ---
 
 Block with math equation
 
-$$ y(x) = ax + b $$
+$$ 
+c = \sqrt{a^2 + b^2}
+$$
 
 ?
 
-Math equation blocks should be surrounded with two dollar '`$$`' signs. You can write them in a single or multiple lines (fenced style).
+Math equation blocks should be surrounded with two dollar '`$$`' signs. You can write them in multiple (fenced style) a single line.
 ```md
-$$ y(x) = ax + b $$
+$$
+c = \sqrt{a^2 + b^2}
+$$
 ```
 ```md
-$$ 
-y(x) = ax + b 
-$$
+$$ c = \sqrt{a^2 + b^2} $$
 ```
 
 ---
 
 Block with math equation and numbering
 
-$$ y(x) = ax + b $$ (1)
+$$
+c = \sqrt{a^2 + b^2}
+$$ (1)
 
 ?
 
 To add number to the math block add number in parentheses to the closing mark ('`$$ (1)`').
 ```md
-$$ y(x) = ax + b $$ (1)
+$$
+c = \sqrt{a^2 + b^2}
+$$ (1)
 ```
 
 ---
@@ -799,10 +806,13 @@ Inline HTML
 ```html
 <dl>
   <dt>HTML definition list</dt>
-  <dd>In a definition list, each list item contains two entries: a term and a description.</dd>
+  <dd>In a definition list, each list item contains
+    two entries: a term and a description.</dd>
 
   <dt>Markdown in HTML</dt>
-  <dd>Once in HTML you cannot use Markdown syntax (e.g. *not*, **very**). Instead you have to rely entirely on <strong>HTML tags</strong>.</dd>
+  <dd>Once in HTML you cannot use Markdown syntax 
+    (e.g. *not*, **very**). Instead you have to rely 
+    entirely on <strong>HTML tags</strong>.</dd>
 </dl>
 ```
 
