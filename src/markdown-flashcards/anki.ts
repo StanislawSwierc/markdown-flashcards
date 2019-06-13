@@ -1,6 +1,7 @@
 import AnkiExport from "anki-apkg-export"
 import * as app from "./app"
 import * as fs from "fs"
+import * as path from "path"
 
 // apkg.save()
 //   .then(zip => {
@@ -9,8 +10,6 @@ import * as fs from "fs"
 //   })
 //   .catch(err => console.log(err.stack || err));
 export async function transform(text: string): Promise<Buffer> {
-    let markdownCSS = await fs.promises.readFile('./node_modules/github-markdown-css/github-markdown.css', 'utf8');
-    let katexCSS = await fs.promises.readFile('./node_modules/katex/dist/katex.min.css', 'utf8');
     let template = {
         questionFormat: `
 <div class="markdown-body">
@@ -25,20 +24,36 @@ export async function transform(text: string): Promise<Buffer> {
 </div>
 `,
         css: `
+@import url("_markdown_base.css");
+@import url("_markdown_katex.css");
+
 .card {
     font-size: 20px;
     background-color: white;
 }
-
-${markdownCSS}
-${katexCSS}
 `
     }
-
 
     let deck = app.parse(text);
     let apkg = new AnkiExport(deck.title, template);
 
+
+    // Add media
+    apkg.addMedia('_markdown_base.css', await fs.promises.readFile(
+        './node_modules/github-markdown-css/github-markdown.css'));
+
+    let content = await fs.promises.readFile(
+        './node_modules/katex/dist/katex.css', 'utf-8');
+    content = content.replace(/url\(fonts\//g, "url(_fonts_");
+    apkg.addMedia('_markdown_katex.css', content);
+
+    let fonts = await fs.promises.readdir(
+        './node_modules/katex/dist/fonts');
+    for (let font of fonts) {
+        let content = await fs.promises.readFile(
+           path.join('./node_modules/katex/dist/fonts/', font));
+        apkg.addMedia(`_fonts_${font}`, content);
+    }
 
     for (let section of deck.sections) {
         let tags = [section];
