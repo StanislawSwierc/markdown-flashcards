@@ -1,6 +1,11 @@
 # Markdown
 Markdown is a lightweight markup language with plain text formatting syntax.
 
+This deck usess the following convention to represent whitespace characters when they are signifficant.
+* `·` - space 
+* `→` - tab
+* `↵` - new line 
+
 ## Paragraphs
 
 ---
@@ -13,8 +18,8 @@ Second paragraph
 A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines (containing nothing but spaces or tabs).
 
 ```
-First paragraph
-
+First paragraph↵
+↵
 Second paragraph
 ```
 
@@ -51,7 +56,7 @@ Third line
 To break a line it should be followed by two or more spaces or be terminated with a backslash character '`\`'.
 
 ```md
-First line with two trailing spaces..↵
+First line with two trailing spaces··↵
 Second line with backslash\↵
 Third line
 ```
@@ -172,17 +177,19 @@ Ordered list with long paragraphs.
    First sentence of the second paragraph.
 
 2. Second item
+	Second sentence.
 
 ?
 
 Align all sentences with the beginning of first one by indenting them with 3 spaces. You can also use a single tab instead.
 ```md
 1. First sentence of the first paragrap.
-   Second sentence.
+···Second sentence.
 
-   Second paragrap.
+···Second paragrap.
 
 2. Second item
+→   Second sentence.
 ```
 
 ---
@@ -198,9 +205,9 @@ Ordered list with sub-list
 Align sub-list with the beginning one the parent item by indenting it with 3 spaces. You can also use a single tab instead.
 ```md
 1. First item
-   1. First sub-item (spaces)
+···1. First sub-item (spaces)
 2. Second item
-	1. Second sub-item (tab)
+→   1. Second sub-item (tab)
 ```
 
 ---
@@ -208,17 +215,17 @@ Align sub-list with the beginning one the parent item by indenting it with 3 spa
 Mixed ordered and bullet lists
 1. First ordered item
    - First bullet list sub-item
-   - Second bullet list sub-item
 2. Second ordered item
+	- Second bullet list sub-item
 
 ?
 
 Align sub-list with the beginning one the parent item by indenting it with 3 spaces. You can also use a single tab instead.
 ```md
 1. First ordered item
-   - First unordered sub-item
-   - Second unordered sub-item
+···- First bullet list sub-item
 2. Second ordered item
+→   - Second unordered sub-item
 ```
 
 ---
@@ -252,17 +259,19 @@ Bullet list with long paragraphs.
   First sentence of the second paragraph.
 
 - Second item
+	Second sentence of the second paragraph.
 
 ?
 
 Indent all the lines with 2 spaces or a single tab.
 ```md
 - First sentence of the first paragraph.
-  Second sentence of the first paragraph.
+··Second sentence of the first paragraph.
 
-  First sentence of the second paragraph.
+··First sentence of the second paragraph.
 
 - Second item
+→   Second sentence of the second paragraph.
 ```
 
 ---
@@ -278,9 +287,9 @@ Bullet list with sub-list
 Indent sub-list with 2-4 spaces or single tab.
 ```md
 - First item
-  - First sub-item (spaces)
+··- First sub-item (spaces)
 - Second item
-	- Second sub-item (tab)
+→   - Second sub-item (tab)
 ```
 
 ---
@@ -526,7 +535,7 @@ code block
     ```
 
 ```
-....code block indented with four spaces
+····code block indented with four spaces
 ```
 
 ---
