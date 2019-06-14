@@ -181,4 +181,53 @@ section description
         expect(card.front).to.equal("<p>front 2</p>");
         expect(card.back).to.equal("<p>back 2</p><p>extra 2</p>");
     });
+
+    it('can process embedded table', () => {
+        let text = `
+# title
+deck description
+
+## section
+section description
+
+---
+
+Card with a table in the front
+
+| Column 1 | Column 2 |
+| -------- | -------- |
+| value 1  | value 2  |
+
+?
+
+back 1
+
+---
+
+front 2
+
+?
+
+Card with a table in the back
+
+| Column 1 | Column 2 |
+| -------- | -------- |
+| value 1  | value 2  |
+
+---
+`
+        let deck = app.parse(text);
+        expect(deck.sections.length).to.equal(1);
+
+        let section = deck.sections[0];
+        expect(section.cards.length).to.equal(2);
+
+        let card = section.cards[0];
+        expect(card.front).to.equal("<p>Card with a table in the front</p><table>\n<thead>\n<tr>\n<th>Column 1</th>\n<th>Column 2</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>value 1</td>\n<td>value 2</td>\n</tr>\n</tbody>\n</table>");
+        expect(card.back).to.equal("<p>back 1</p>");
+
+        card = section.cards[1];
+        expect(card.front).to.equal("<p>front 2</p>");
+        expect(card.back).to.equal("<p>back 2</p>");
+    });
 });

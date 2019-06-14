@@ -91,7 +91,8 @@ export function parse(text: string): Deck {
       continue;
     }
 
-    if (node.tagName === "TABLE") {
+    // Tables are allowed only if they appear directly in the section.
+    if (state === State.SectionDescription && node.tagName === "TABLE") {
       for(let row of Array.from(node.querySelectorAll("TR"))) {
         let card = <Card>{
           front: "",
