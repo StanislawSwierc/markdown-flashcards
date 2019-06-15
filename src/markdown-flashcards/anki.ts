@@ -26,6 +26,7 @@ export async function transform(text: string): Promise<Buffer> {
         css: `
 @import url("_markdown_base.css");
 @import url("_markdown_katex.css");
+@import url("_markdown_highlight.css");
 
 .card {
     font-size: 20px;
@@ -41,6 +42,8 @@ export async function transform(text: string): Promise<Buffer> {
     // Add media
     apkg.addMedia('_markdown_base.css', await fs.promises.readFile(
         './node_modules/github-markdown-css/github-markdown.css'));
+    apkg.addMedia('_markdown_highlight.css', await fs.promises.readFile(
+        './node_modules/highlight.js/styles/github.css'));
 
     let content = await fs.promises.readFile(
         './node_modules/katex/dist/katex.css', 'utf-8');

@@ -228,6 +228,6 @@ Card with a table in the back
 
         card = section.cards[1];
         expect(card.front).to.equal("<p>front 2</p>");
-        expect(card.back).to.equal("<p>back 2</p>");
+        expect(card.back).to.equal("<p>Card with a table in the back</p><table>\n<thead>\n<tr>\n<th>Column 1</th>\n<th>Column 2</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>value 1</td>\n<td>value 2</td>\n</tr>\n</tbody>\n</table>");
     });
 });

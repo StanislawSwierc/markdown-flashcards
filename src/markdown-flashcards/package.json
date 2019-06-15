@@ -20,13 +20,16 @@
     "typescript": "^3.5.1"
   },
   "dependencies": {
+    "@types/highlight.js": "^9.12.3",
     "@types/markdown-it": "0.0.7",
     "anki-apkg-export": "^4.0.2",
     "ankiplus": "^1.0.0",
     "github-markdown-css": "^3.0.1",
+    "highlight.js": "^9.15.8",
     "katex": "^0.10.2",
     "markdown-it": "^8.4.2",
     "markdown-it-emoji": "^1.4.0",
+    "markdown-it-highlightjs": "^3.0.0",
     "markdown-it-math": "^4.1.1",
     "markdown-it-texmath": "^0.5.5"
   }

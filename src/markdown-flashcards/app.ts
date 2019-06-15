@@ -4,6 +4,7 @@ import * as jsdom from "jsdom"
 import * as parseFrontMatter from "front-matter"
 import * as katex from "katex"
 import * as texmath from "markdown-it-texmath"
+import * as highlight from "markdown-it-highlightjs"
 
 
 interface Card {
@@ -33,10 +34,15 @@ enum State {
 
 let md = new Markdown({
     html: true,
+    highlight
   })
   .use(emoji)
   .use(texmath
-    .use(katex));
+    .use(katex))
+  .use(highlight, {
+    auto: false,
+    code: false
+  });
 
 export function parse(text: string): Deck {
 
