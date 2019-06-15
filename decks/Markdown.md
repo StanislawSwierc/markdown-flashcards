@@ -308,59 +308,64 @@ Inline-style [link](https://www.google.com)
 
 ---
 
-Inline-style [link with title (hover over)](https://www.google.com "Google's Homepage")
+Inline-style [link](https://www.google.com "Google's Homepage") with title (hover over)
 
 ?
 
+Links can have titles written in double quotes behind the address.
 ```md
-Inline-style [link with title (hover over)](https://www.google.com "Google's Homepage")
+Inline-style [link](https://www.google.com "Google's Homepage") with title (hover over)
 ```
 
 ---
 
-Inline-style [link to a file in the same folder](Markdown.md)
+Inline-style [link](Markdown.md) to a file in the same folder
 
 ?
 
+To create a link to the file in the same folder, simply write its name.
 ```md
-Inline-style [link to a file in the same folder](Markdown.md)
+Inline-style [link](Markdown.md) to a file in the same folder
+```
+
+---
+
+Inline-style [link](../Readme.md) to a file in the parent folder
+
+?
+
+Use '`../`' prefix to create a link to the file in a parent folder
+
+```md
+Inline-style [link](../Readme.md) to a file in the parent folder
+```
+
+---
+
+Inline-style [link](./child/Readme.md) to a file in the child folder
+
+?
+
+Use '`./child`' prefix to create a link to the file in a child folder.
+```md
+Inline-style [link](./child/Readme.md) to a file in the child folder
 ```
 
 ---
 
 
-Inline-style [link to a file in the parent folder](../Readme.md)
+Reference-style [text link][abc]
+
+[abc]: https://www.google.com
 
 ?
 
-```md
-Inline-style [link to a file in the parent folder](../Readme.md)
-```
-
----
-
-
-Inline-style [link to a file in the child folder](./child/Readme.md)
-
-?
+Reference-style links are great for separating long URLs from the main text. You can also use the same reference multiple times in the document. Reference identifiers are case-insensitive.
 
 ```md
-Inline-style [link to a file in the child folder](./child/Readme.md)
-```
+Reference-style [text link][abc]
 
----
-
-
-Reference-style [text link][case-insensitive reference text]
-
-[case-insensitive reference text]: https://www.google.com
-
-?
-
-```md
-Reference-style [text link][case-insensitive reference text]
-
-[case-insensitive reference text]: https://www.google.com
+[abc]: https://www.google.com
 
 ```
 
@@ -371,6 +376,8 @@ Reference-style [number link][1]
 [1]: https://www.google.com
 
 ?
+
+Reference-style links can also use numbers as identifiers.
 
 ```md
 Reference-style [number link][1]
@@ -484,21 +491,23 @@ Inline-style image with title (hover over)
 ---
 
 Reference-style image  
-![][logo_local]
-![][logo_url]
+![][img_local]
+![][img_url]
 
-[logo_local]: logo_48.png
-[logo_url]: https://www.iconfinder.com/icons/298823/download/png/48
+[img_local]: logo_48.png
+[img_url]: https://www.iconfinder.com/icons/298823/download/png/48
 
 ?
 
+Reference-style images are great for separating long URLs from the main text. You can also use the same image multiple times in the document. Reference identifiers are case-insensitive.
+
 ```md
 Reference-style image  
-![][logo_local]
-![][logo_url]
+![][img_local]
+![][img_url]
 
-[logo_local]: logo_48.png
-[logo_url]: https://www.iconfinder.com/icons/298823/download/png/48
+[img_local]: logo_48.png
+[img_url]: https://www.iconfinder.com/icons/298823/download/png/48
 ```
 
 ---
