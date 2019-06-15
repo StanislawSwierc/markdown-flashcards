@@ -571,16 +571,27 @@ Table
 
 Table consists of header and delimiter row followed by rows lines. It can be written in a way which makes it readable even in the plain text.
 
-```
+```md
 | Column 1 | Column 2 |
 | -------- | -------- |
 | Cell 1   | Cell 2   |
 | Cell 3   | Cell 4   |
 ```
 
-Some elements can be omitted. Required elements include inner pipe '`|`' characters and second line to separate table headers. The following table is a minimalistic example which produces the same result.
+---
 
-```
+Table (required elements)
+
+Column 1 | Column 2
+-|-
+Cell 1 | Cell 2
+Cell 3 | Cell 4
+
+?
+
+Some elements can be omitted in tables. Required elements include inner pipe '`|`' characters and second line to separate table headers. The following table is a minimalistic example.
+
+```md
 Column 1 | Column 2
 -|-
 Cell 1 | Cell 2
