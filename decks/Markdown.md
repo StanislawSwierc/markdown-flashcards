@@ -20,7 +20,7 @@ A paragraph is simply one or more consecutive lines of text, separated by one or
 ```
 First paragraph↵
 ↵
-Second paragraph
+Second paragraph↵
 ```
 
 ---
@@ -40,7 +40,7 @@ Long paragraphs can be split into multiple lines provided there is no blank line
 Lorem ipsum dolor sit amet, consectetur↵
 adipiscing elit, sed do eiusmod tempor↵
 incididunt ut labore et dolore magna↵
-aliqua.
+aliqua.↵
 ```
 
 ---
@@ -72,7 +72,7 @@ Headers (e.g. title, section, subsection) with prefix style.
 
 ?
 
-```md
+```
 # H1 (title)
 ## H2 (section)
 ### H3 (sub-section)
@@ -87,7 +87,7 @@ Headers (e.g. title, section, subsection) with underline style.
 
 ?
 
-```md
+```
 H1 (title)
 ==========
 
@@ -170,7 +170,22 @@ Start each item with a digit (0-9), followed by either a '`.`' character or a '`
 
 ---
 
-Ordered list with long paragraphs.
+Ordered list (lazy numbering)
+1. First item
+1. Second item
+
+?
+
+When defining ordered list you can repeat the same number (e.g. '`1.`') multiple times and it will be automatically converted to the right number by the Markdown interpretter.
+
+```md
+1. First item
+1. Second item
+```
+
+---
+
+Ordered list with long paragraphs
 1. First sentence of the first paragraph.
    Second sentence of the first paragraph.
 
