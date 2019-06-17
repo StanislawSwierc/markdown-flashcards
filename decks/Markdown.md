@@ -23,6 +23,8 @@ First paragraph↵
 Second paragraph↵
 ```
 
+`↵` - new line 
+
 ---
 
 Long paragraphs.
@@ -43,6 +45,8 @@ incididunt ut labore et dolore magna↵
 aliqua.↵
 ```
 
+`↵` - new line 
+
 ---
 
 Paragraph with line breaks
@@ -60,6 +64,8 @@ First line with two trailing spaces··↵
 Second line with backslash\↵
 Third line
 ```
+`·` - space \
+`↵` - new line 
 
 ---
 
@@ -72,7 +78,7 @@ Headers (e.g. title, section, subsection) with prefix style.
 
 ?
 
-```
+```md
 # H1 (title)
 ## H2 (section)
 ### H3 (sub-section)
@@ -87,7 +93,7 @@ Headers (e.g. title, section, subsection) with underline style.
 
 ?
 
-```
+```md
 H1 (title)
 ==========
 
@@ -207,6 +213,9 @@ Align all sentences with the beginning of first one by indenting them with 3 spa
 →   Second sentence.
 ```
 
+`·` - space \
+`→` - tab
+
 ---
 
 Ordered list with sub-list
@@ -225,6 +234,9 @@ Align sub-list with the beginning one the parent item by indenting it with 3 spa
 →   1. Second sub-item (tab)
 ```
 
+`·` - space \
+`→` - tab
+
 ---
 
 Mixed ordered and bullet lists
@@ -242,6 +254,9 @@ Align sub-list with the beginning one the parent item by indenting it with 3 spa
 2. Second ordered item
 →   - Second unordered sub-item
 ```
+
+`·` - space \
+`→` - tab
 
 ---
 
@@ -289,6 +304,9 @@ Indent all the lines with 2 spaces or a single tab.
 →   Second sentence of the second paragraph.
 ```
 
+`·` - space \
+`→` - tab
+
 ---
 
 Bullet list with sub-list
@@ -298,7 +316,6 @@ Bullet list with sub-list
 	- Second sub-item
 
 ?
-
 Indent sub-list with 2-4 spaces or single tab.
 ```md
 - First item
@@ -306,6 +323,9 @@ Indent sub-list with 2-4 spaces or single tab.
 - Second item
 →   - Second sub-item (tab)
 ```
+
+`·` - space \
+`→` - tab
 
 ---
 
@@ -482,13 +502,14 @@ Inline-style image in the child folder
 
 
 Inline-style image with alternative text  
-![alternative text](logo_48.png)
+![image failed to load](missing.png)
 
 ?
 
+Alternative text for the image gets shown if the image fails to load (e.g. no internet access).
 ```md
 Inline-style image with alternative text  
-![alternative text](logo_48.png)
+![image failed to load](missing.png)
 ```
 
 ---
@@ -561,6 +582,7 @@ code block
 ```
 ····code block indented with four spaces
 ```
+`·` - space
 
 ---
 
@@ -572,7 +594,7 @@ print("Syntax highlighting in Python")
 
 ?
 
-Add the language idetifier after opening back-ticks.
+Add the language idetifier after opening back-ticks. Full list of supported languages can be found [here](https://github.com/github/linguist/blob/master/lib/linguist/languages.ymlA).
 
     ```python
     print("Syntax highlighting in Python")
@@ -803,12 +825,14 @@ $$
 
 ?
 
-Math equation blocks should be surrounded with two dollar '`$$`' signs. You can write them in multiple (fenced style) a single line.
+Math equation blocks should be surrounded with two dollar '`$$`' signs. You can write them in multiple lines (fenced style),
 ```md
 $$
 c = \sqrt{a^2 + b^2}
 $$
 ```
+
+or a single line.
 ```md
 $$ c = \sqrt{a^2 + b^2} $$
 ```
