@@ -798,6 +798,36 @@ ______
 
 ---
 
+## Multimedia
+
+________________________________________________________________________________
+Audio player.
+
+<audio controls src="bell.mp3"></audio>
+
+?
+
+While Markdown does not define how to reference audio files, we can use inline
+HTML and add `<audio>` tag.
+
+```html
+<audio controls src="bell.mp3"></audio>
+```
+________________________________________________________________________________
+Video player.
+
+<video controls src="video.mp4"></video>
+
+?
+
+While Markdown does not define how to reference video files, we can use inline
+HTML and add `<video>` tag.
+
+```html
+<video controls src="video.mp4"></video>
+```
+________________________________________________________________________________
+
 ## Math
 Math equations are not part of the core Markdown, but many editors do support them. For Visual Studio Code it is necessary to install extension to enable this functionality (e.g. [Markdown+Math](https://marketplace.visualstudio.com/items?itemName=goessner.mdmath)).
 
