@@ -2,6 +2,33 @@ import AnkiExport from "anki-apkg-export"
 import * as app from "./app"
 import * as fs from "fs"
 import * as path from "path"
+import * as jsdom from "jsdom"
+import fetch from "node-fetch"
+
+export async function fromUrl(url: string) {
+    let response = await fetch(url);
+    if (response.ok){
+        let buffer = await response.buffer();
+
+
+    }
+}
+
+
+
+export type ExportOptions = {
+    /**
+     * url sets the value used in resolution of relative URLs within the
+     * document and the same-origin restrictions and referrer used while
+     * fetching subresources.
+     * It defaults to "about:blank".
+     */
+    url?: string;
+};
+
+type ExportContext = {
+  media: { [key: string]: string; }
+}
 
 // apkg.save()
 //   .then(zip => {
@@ -9,7 +36,9 @@ import * as path from "path"
 //     console.log(`Package has been generated: output.pkg`);
 //   })
 //   .catch(err => console.log(err.stack || err));
-export async function transform(text: string): Promise<Buffer> {
+export async function transform(
+    text: string,
+    options?: ExportOptions): Promise<Buffer> {
     let template = {
         questionFormat: `
 <div class="markdown-body">
@@ -54,13 +83,16 @@ export async function transform(text: string): Promise<Buffer> {
         './node_modules/katex/dist/fonts');
     for (let font of fonts) {
         let content = await fs.promises.readFile(
-           path.join('./node_modules/katex/dist/fonts/', font));
+            path.join('./node_modules/katex/dist/fonts/', font));
         apkg.addMedia(`_fonts_${font}`, content);
     }
 
     for (let section of deck.sections) {
         let tags = [section];
         for (let card of section.cards) {
+
+
+
             apkg.addCard(
                 card.front,
                 card.back,
@@ -74,3 +106,54 @@ export async function transform(text: string): Promise<Buffer> {
 
     return apkg.save();
 }
+
+
+
+function transformHtml(
+    html: string, 
+    context: ExportContext, 
+    options: ExportOptions): string {
+
+    let dom = new jsdom.JSDOM(html, {
+        url: options.url
+    });
+
+    let imgs = dom.window.document.querySelectorAll("img");
+    for (let img of Array.from(imgs)) {
+        console.error("lol")
+    }
+
+    return "";
+}
+/*
+
+This is what we can use to style audio tag in the Anki app.
+
+<!DOCTYPE html>
+<html>
+<head>
+	 <style>
+
+audio::-webkit-media-controls-current-time-display {
+    display: none;
+}
+audio::-webkit-media-controls-time-remaining-display {
+    display: none;
+}
+
+
+     </style>
+</head>
+<body>
+
+<audio id="myAudio" controls controlsList="nodownload">
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+</body>
+</html>
+
+

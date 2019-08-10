@@ -32,9 +32,9 @@ enum State {
   Back
 }
 
-let md = new Markdown({
-    html: true,
-    highlight
+let md = new Markdown(
+  {
+    html: true
   })
   .use(emoji)
   .use(texmath
@@ -44,24 +44,26 @@ let md = new Markdown({
     code: false
   });
 
+
 export function parse(text: string): Deck {
 
   let doc = parseFrontMatter(text);
   let html = md.render(doc.body);
+
   let dom = new jsdom.JSDOM(html);
 
   let deck = <Deck>{
     attributes: doc.attributes,
     sections: []
   };
-  let section = <Section> {
-    cards: []
-  }
 
   let front = "";
   let back = "";
   let description = "";
   let state = State.DeckDescription;
+  let section = <Section>{
+    cards: []
+  }
 
   for (let node of Array.from(dom.window.document.body.children)) {
     if (node.tagName === "H1") {
@@ -76,7 +78,7 @@ export function parse(text: string): Deck {
       if (section.title || section.description || section.cards.length) {
         deck.sections.push(section);
       }
-      section = <Section> {
+      section = <Section>{
         title: node.innerHTML,
         cards: []
       }
@@ -99,13 +101,13 @@ export function parse(text: string): Deck {
 
     // Tables are allowed only if they appear directly in the section.
     if (state === State.SectionDescription && node.tagName === "TABLE") {
-      for(let row of Array.from(node.querySelectorAll("TR"))) {
+      for (let row of Array.from(node.querySelectorAll("TR"))) {
         let card = <Card>{
           front: "",
           back: ""
         };
         let first = true;
-        for(let col of Array.from(row.querySelectorAll("TD"))) {
+        for (let col of Array.from(row.querySelectorAll("TD"))) {
           if (first) {
             card.front += `<p>${col.innerHTML}</p>`;
             first = false;
@@ -120,7 +122,7 @@ export function parse(text: string): Deck {
       continue;
     }
 
-    if (node.tagName === "P" && /^\s*(\?|❓|❔|↪️)\s*$/.test(node.innerHTML)) {
+    if (node.tagName === "P" && /^\s*(\?|↪|❓|❔|↪️)\s*$/.test(node.innerHTML)) {
       state = State.Back;
       continue;
     }

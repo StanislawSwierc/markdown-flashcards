@@ -72,6 +72,14 @@ back
         let text = `
 ---
 
+front ↪
+
+↪
+
+back ↪
+
+---
+
 front :question:
 
 :question:
@@ -100,17 +108,21 @@ back :arrow_right_hook:
         expect(deck.sections.length).to.equal(1);
 
         let section = deck.sections[0];
-        expect(section.cards.length).to.equal(3);
+        expect(section.cards.length).to.equal(4);
 
         let card = section.cards[0]
+        expect(card.front).to.equal("<p>front ↪</p>");
+        expect(card.back).to.equal("<p>back ↪</p>");
+
+        card = section.cards[1]
         expect(card.front).to.equal("<p>front ❓</p>");
         expect(card.back).to.equal("<p>back ❓</p>");
 
-        card = section.cards[1]
+        card = section.cards[2]
         expect(card.front).to.equal("<p>front ❔</p>");
         expect(card.back).to.equal("<p>back ❔</p>");
 
-        card = section.cards[2]
+        card = section.cards[3]
         expect(card.front).to.equal("<p>front ↪️</p>");
         expect(card.back).to.equal("<p>back ↪️</p>");
     })
@@ -230,4 +242,21 @@ Card with a table in the back
         expect(card.front).to.equal("<p>front 2</p>");
         expect(card.back).to.equal("<p>Card with a table in the back</p><table>\n<thead>\n<tr>\n<th>Column 1</th>\n<th>Column 2</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>value 1</td>\n<td>value 2</td>\n</tr>\n</tbody>\n</table>");
     });
+
+    it('can process cards with images', () => {
+        let text = `
+____________________
+![](logo_48.png)
+
+?
+
+back
+____________________
+`
+        let deck = app.parse(text);
+        let section = deck.sections[0];
+        let card = section.cards[0];
+
+        expect(card.front).to.equal('<p><img src=\"logo_48.png\" alt=\"\"></p>');
+    })
 });
