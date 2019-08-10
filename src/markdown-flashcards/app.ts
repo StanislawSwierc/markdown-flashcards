@@ -1,28 +1,28 @@
-import * as Markdown from "markdown-it"
-import * as emoji from "markdown-it-emoji"
-import * as jsdom from "jsdom"
-import * as parseFrontMatter from "front-matter"
-import * as katex from "katex"
-import * as texmath from "markdown-it-texmath"
-import * as highlight from "markdown-it-highlightjs"
+import * as Markdown from "markdown-it";
+import * as emoji from "markdown-it-emoji";
+import * as jsdom from "jsdom";
+import * as parseFrontMatter from "front-matter";
+import * as katex from "katex";
+import * as texmath from "markdown-it-texmath";
+import * as highlight from "markdown-it-highlightjs";
 
 
 interface Card {
-  front: string,
-  back: string,
+  front: string;
+  back: string;
 }
 
 interface Deck {
-  title: string,
-  description: string,
-  attributes: {},
-  sections: Section[]
+  title: string;
+  description: string;
+  attributes: {};
+  sections: Section[];
 }
 
 interface Section {
-  title: string,
-  description: string,
-  cards: Card[]
+  title: string;
+  description: string;
+  cards: Card[];
 }
 
 enum State {
@@ -32,6 +32,7 @@ enum State {
   Back
 }
 
+// tslint:disable-next-line: typedef
 let md = new Markdown(
   {
     html: true
@@ -63,7 +64,7 @@ export function parse(text: string): Deck {
   let state = State.DeckDescription;
   let section = <Section>{
     cards: []
-  }
+  };
 
   for (let node of Array.from(dom.window.document.body.children)) {
     if (node.tagName === "H1") {
@@ -81,7 +82,7 @@ export function parse(text: string): Deck {
       section = <Section>{
         title: node.innerHTML,
         cards: []
-      }
+      };
       state = State.SectionDescription;
       continue;
     }

@@ -1,13 +1,13 @@
-import AnkiExport from "anki-apkg-export"
-import * as app from "./app"
-import * as fs from "fs"
-import * as path from "path"
-import * as jsdom from "jsdom"
-import fetch from "node-fetch"
+import AnkiExport from "anki-apkg-export";
+import * as app from "./app";
+import * as fs from "fs";
+import * as path from "path";
+import * as jsdom from "jsdom";
+import fetch from "node-fetch";
 
 export async function fromUrl(url: string) {
     let response = await fetch(url);
-    if (response.ok){
+    if (response.ok) {
         let buffer = await response.buffer();
 
 
@@ -28,7 +28,7 @@ export type ExportOptions = {
 
 type ExportContext = {
   media: { [key: string]: string; }
-}
+};
 
 // apkg.save()
 //   .then(zip => {
@@ -62,28 +62,28 @@ export async function transform(
     background-color: white;
 }
 `
-    }
+    };
 
     let deck = app.parse(text);
     let apkg = new AnkiExport(deck.title, template);
 
 
     // Add media
-    apkg.addMedia('_markdown_base.css', await fs.promises.readFile(
-        './node_modules/github-markdown-css/github-markdown.css'));
-    apkg.addMedia('_markdown_highlight.css', await fs.promises.readFile(
-        './node_modules/highlight.js/styles/github.css'));
+    apkg.addMedia("_markdown_base.css", await fs.promises.readFile(
+        "./node_modules/github-markdown-css/github-markdown.css"));
+    apkg.addMedia("_markdown_highlight.css", await fs.promises.readFile(
+        "./node_modules/highlight.js/styles/github.css"));
 
     let content = await fs.promises.readFile(
-        './node_modules/katex/dist/katex.css', 'utf-8');
+        "./node_modules/katex/dist/katex.css", "utf-8");
     content = content.replace(/url\(fonts\//g, "url(_fonts_");
-    apkg.addMedia('_markdown_katex.css', content);
+    apkg.addMedia("_markdown_katex.css", content);
 
     let fonts = await fs.promises.readdir(
-        './node_modules/katex/dist/fonts');
+        "./node_modules/katex/dist/fonts");
     for (let font of fonts) {
         let content = await fs.promises.readFile(
-            path.join('./node_modules/katex/dist/fonts/', font));
+            path.join("./node_modules/katex/dist/fonts/", font));
         apkg.addMedia(`_fonts_${font}`, content);
     }
 
@@ -97,7 +97,7 @@ export async function transform(
                 card.front,
                 card.back,
                 tags,
-            )
+            );
         }
     }
 
@@ -110,8 +110,8 @@ export async function transform(
 
 
 function transformHtml(
-    html: string, 
-    context: ExportContext, 
+    html: string,
+    context: ExportContext,
     options: ExportOptions): string {
 
     let dom = new jsdom.JSDOM(html, {
@@ -120,7 +120,7 @@ function transformHtml(
 
     let imgs = dom.window.document.querySelectorAll("img");
     for (let img of Array.from(imgs)) {
-        console.error("lol")
+        console.error("lol");
     }
 
     return "";
@@ -156,4 +156,4 @@ audio::-webkit-media-controls-time-remaining-display {
 </body>
 </html>
 
-
+*/
