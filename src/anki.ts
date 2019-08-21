@@ -5,13 +5,24 @@ import * as path from "path";
 import * as jsdom from "jsdom";
 import fetch from "node-fetch";
 
-export async function fromUrl(url: string) {
+import * as fetchMock from "fetch-mock";
+
+export async function fromFile(path: string): Promise<Buffer> {
+    return null;
+}
+
+export async function fromUrl(url: string): Promise<Buffer> {
+
+    fetchMock.get('*', { hello: 'world' });
+
     let response = await fetch(url);
     if (response.ok) {
         let buffer = await response.buffer();
-
-
+        return buffer;
     }
+    fetchMock.restore();
+
+    return null;
 }
 
 

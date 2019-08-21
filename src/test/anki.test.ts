@@ -1,7 +1,19 @@
 import { expect } from 'chai';
 import * as anki from '../anki';
-import { promises as fs } from "fs"
+import { promises as fs } from "fs";
+import * as fetchMock from "fetch-mock";
 
+describe("fromUrl", () => {
+    it("executes fetch", async () => {
+
+        let buffer = await anki.fromUrl("http://examplsldkfjsdlfkjsdlfjsdlfkje.com");
+    
+
+
+
+
+    });
+});
 
 describe('anki', () => {
     it('can transform deck', async () => {
