@@ -53,7 +53,8 @@ export async function transform(
     options?: ExportOptions): Promise<Buffer> {
 
     let footer = "";
-    if (options.footer
+    if (options 
+        && options.footer
         && options.url
         && options.url.startsWith("https://raw.githubusercontent.com/")) {
         let editUrl = options.url.replace(/https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)/,

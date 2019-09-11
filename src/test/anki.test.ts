@@ -42,12 +42,12 @@ back
     });
 
     it('can transform Markdown deck', async () => {
-        let text = await fs.readFile("../../decks/Markdown.md", 'utf-8');
+        let text = await fs.readFile("../decks/Markdown.md", 'utf-8');
 
         let buffer = await anki.transform(text);
 
         expect(buffer.length).to.greaterThan(0);
 
-        await fs.writeFile("../../decks/Markdown.apkg", buffer, 'binary');
+        await fs.writeFile("../decks/Markdown.apkg", buffer, 'binary');
     });
 });
