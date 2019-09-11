@@ -1,7 +1,7 @@
 # Markdown
 Markdown is a lightweight markup language with plain text formatting syntax.
 
-This deck usess the following convention to represent whitespace characters when they are signifficant.
+This deck usess the following convention to represent signifficant whitespace characters:
 * `·` - space 
 * `→` - tab
 * `↵` - new line 

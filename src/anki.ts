@@ -1,31 +1,27 @@
 import AnkiExport from "anki-apkg-export";
 import * as app from "./app";
-import * as fs from "fs";
+import { promises as fs } from "fs";
 import * as path from "path";
 import * as jsdom from "jsdom";
-import fetch from "node-fetch";
-
-import * as fetchMock from "fetch-mock";
+//import fetch, { FetchError } from "node-fetch";
 
 export async function fromFile(path: string): Promise<Buffer> {
     return null;
 }
 
 export async function fromUrl(url: string): Promise<Buffer> {
-
-    fetchMock.get('*', { hello: 'world' });
-
     let response = await fetch(url);
-    if (response.ok) {
-        let buffer = await response.buffer();
-        return buffer;
+    if (!response.ok) {
+        throw new Error(
+            `Invalid status ${response.status} ${response.statusText}: ${url}`);
     }
-    fetchMock.restore();
-
-    return null;
+    let text = await response.text();
+    let apkg = await transform(text, { 
+        url: url,
+        footer: true
+    });
+    return apkg;
 }
-
-
 
 export type ExportOptions = {
     /**
@@ -35,10 +31,15 @@ export type ExportOptions = {
      * It defaults to "about:blank".
      */
     url?: string;
+
+    /**
+     * footer controls whether each card should be decorated with a footer.
+     */
+    footer?: boolean;
 };
 
 type ExportContext = {
-  media: { [key: string]: string; }
+    media: { [key: string]: string; }
 };
 
 // apkg.save()
@@ -50,6 +51,24 @@ type ExportContext = {
 export async function transform(
     text: string,
     options?: ExportOptions): Promise<Buffer> {
+
+    let footer = "";
+    if (options.footer
+        && options.url
+        && options.url.startsWith("https://raw.githubusercontent.com/")) {
+        let editUrl = options.url.replace(/https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)/,
+            "https://github.com/$1/$2/blob");
+
+        footer = `
+<hr>
+<p style="text-align:center">
+    <a href="${editUrl}">
+        <button><i class="fa fa-github"></i> edit</button>
+    </a>
+</p>
+        `;
+    }
+
     let template = {
         questionFormat: `
 <div class="markdown-body">
@@ -61,12 +80,14 @@ export async function transform(
     {{Front}}
     <hr id="answer">
     {{Back}}
+    ${footer}
 </div>
 `,
         css: `
-@import url("_markdown_base.css");
-@import url("_markdown_katex.css");
-@import url("_markdown_highlight.css");
+@import url("_css_github-markdown.css");
+@import url("_css_katex.css");
+@import url("_css_highlightjs-github.css");
+@import url("_css_font-awesome.min.css");
 
 .card {
     font-size: 20px;
@@ -80,29 +101,40 @@ export async function transform(
 
 
     // Add media
-    apkg.addMedia("_markdown_base.css", await fs.promises.readFile(
+    apkg.addMedia("_css_github-markdown.css", await fs.readFile(
         "./node_modules/github-markdown-css/github-markdown.css"));
-    apkg.addMedia("_markdown_highlight.css", await fs.promises.readFile(
+    apkg.addMedia("_css_highlightjs-github.css", await fs.readFile(
         "./node_modules/highlight.js/styles/github.css"));
 
-    let content = await fs.promises.readFile(
+    let content = await fs.readFile(
         "./node_modules/katex/dist/katex.css", "utf-8");
     content = content.replace(/url\(fonts\//g, "url(_fonts_");
-    apkg.addMedia("_markdown_katex.css", content);
+    apkg.addMedia("_css_katex.css", content);
 
-    let fonts = await fs.promises.readdir(
-        "./node_modules/katex/dist/fonts");
+    // Flatten structure as Anki does not support nested directories.
+    let fonts = await fs.readdir("./node_modules/katex/dist/fonts");
     for (let font of fonts) {
-        let content = await fs.promises.readFile(
+        let content = await fs.readFile(
             path.join("./node_modules/katex/dist/fonts/", font));
+        apkg.addMedia(`_fonts_${font}`, content);
+    }
+
+    content = await fs.readFile(
+        "./node_modules/font-awesome/css/font-awesome.min.css", "utf-8");
+    content = content.replace(/url\('\.\.\/fonts\//g, "url('_fonts_");
+    apkg.addMedia("_css_font-awesome.min.css", content);
+
+    // Flatten structure as Anki does not support nested directories.
+    fonts = await fs.readdir("./node_modules/font-awesome/fonts");
+    for (let font of fonts) {
+        let content = await fs.readFile(
+            path.join("./node_modules/font-awesome/fonts/", font));
         apkg.addMedia(`_fonts_${font}`, content);
     }
 
     for (let section of deck.sections) {
         let tags = [section];
         for (let card of section.cards) {
-
-
 
             apkg.addCard(
                 card.front,

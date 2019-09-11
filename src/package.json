@@ -27,6 +27,7 @@
     "@types/markdown-it": "0.0.7",
     "anki-apkg-export": "^4.0.2",
     "ankiplus": "^1.0.0",
+    "font-awesome": "^4.7.0",
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.15.8",
     "katex": "^0.10.2",

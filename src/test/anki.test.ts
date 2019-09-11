@@ -5,13 +5,13 @@ import * as fetchMock from "fetch-mock";
 
 describe("fromUrl", () => {
     it("executes fetch", async () => {
+        let baseUrl = "https://raw.githubusercontent.com/StanislawSwierc/markdown-flashcards/master/";
 
-        let buffer = await anki.fromUrl("http://examplsldkfjsdlfkjsdlfjsdlfkje.com");
-    
+        fetchMock.get("*", url => fs.readFile(url.replace(baseUrl, "../")));
+        let buffer = await anki.fromUrl(baseUrl + "decks/Markdown.md");
+        fetchMock.restore();
 
-
-
-
+        await fs.writeFile("../decks/Markdown.apkg", buffer, 'binary');
     });
 });
 
