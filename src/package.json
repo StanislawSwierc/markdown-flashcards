@@ -4,7 +4,7 @@
   "description": "Markdown format for flashcards.",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --require ts-node/register test/**/*.ts"
+    "test": "mocha --timeout 5000 --require ts-node/register test/**/*.ts"
   },
   "author": "Stanislaw Swierc (stanislaw.swierc@gmail.com)",
   "license": "ISC",
@@ -27,9 +27,11 @@
     "@types/markdown-it": "0.0.7",
     "anki-apkg-export": "^4.0.2",
     "ankiplus": "^1.0.0",
+    "crypto": "^1.0.1",
     "font-awesome": "^4.7.0",
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.15.8",
+    "is-url": "^1.2.4",
     "katex": "^0.10.2",
     "markdown-it": "^8.4.2",
     "markdown-it-emoji": "^1.4.0",

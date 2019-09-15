@@ -7,12 +7,12 @@ describe("fromUrl", () => {
     it("executes fetch", async () => {
         let baseUrl = "https://raw.githubusercontent.com/StanislawSwierc/markdown-flashcards/master/";
 
-        fetchMock.get("*", url => fs.readFile(url.replace(baseUrl, "../")));
+        //fetchMock.get("*", url => fs.readFile(url.replace(baseUrl, "../"), "utf8"));
         let buffer = await anki.fromUrl(baseUrl + "decks/Markdown.md");
-        fetchMock.restore();
+        //fetchMock.restore();
 
         await fs.writeFile("../decks/Markdown.apkg", buffer, 'binary');
-    });
+    }).timeout(5000);
 });
 
 describe('anki', () => {
