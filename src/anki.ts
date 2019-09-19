@@ -164,13 +164,12 @@ audio::-webkit-media-controls-time-remaining-display {
     }
 
     for (let section of deck.sections) {
-        let tags = [section];
+        let tags = [section.name];
         for (let card of section.cards) {
 
             apkg.addCard(
                 await transformHtml(card.front, context, options),
-                await transformHtml(card.back, context, options),
-                tags,
+                await transformHtml(card.back, context, options)
             );
         }
     }

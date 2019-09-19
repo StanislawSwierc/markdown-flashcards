@@ -20,7 +20,7 @@ interface Deck {
 }
 
 interface Section {
-  title: string;
+  name: string;
   description: string;
   cards: Card[];
 }
@@ -76,11 +76,11 @@ export function parse(text: string): Deck {
     }
 
     if (node.tagName === "H2") {
-      if (section.title || section.description || section.cards.length) {
+      if (section.name || section.description || section.cards.length) {
         deck.sections.push(section);
       }
       section = <Section>{
-        title: node.innerHTML,
+        name: node.innerHTML,
         cards: []
       };
       state = State.SectionDescription;
@@ -152,7 +152,7 @@ export function parse(text: string): Deck {
     });
   }
 
-  if (section.title || section.description || section.cards.length) {
+  if (section.name || section.description || section.cards.length) {
     deck.sections.push(section);
   }
 

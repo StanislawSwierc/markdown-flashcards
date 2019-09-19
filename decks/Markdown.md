@@ -801,9 +801,13 @@ ______
 ## Multimedia
 
 ________________________________________________________________________________
-Audio player.
+Audio file in the same folder.
 
-<audio controls src="bell.mp3"></audio>
+<!--
+  This file was downloaded from:
+  https://freesound.org/people/JordanDurren/sounds/399851/ 
+-->
+<audio controls src="arr.mp3"></audio>
 
 ?
 
@@ -811,10 +815,23 @@ While Markdown does not define how to reference audio files, we can use inline
 HTML and add `<audio>` tag.
 
 ```html
-<audio controls src="bell.mp3"></audio>
+<audio controls src="arr.mp3"></audio>
 ```
 ________________________________________________________________________________
-Video player.
+Audio file by a full URL.
+
+<audio controls src="https://freesound.org/people/JordanDurren/sounds/399851/download/399851__jordandurren__pirate-arr.mp3"></audio>
+
+?
+
+While Markdown does not define how to reference audio files, we can use inline
+HTML and add `<audio>` tag.
+
+```html
+<audio controls src="https://freesound.org/.../arr.mp3"></audio>
+```
+________________________________________________________________________________
+Video file in the same folder.
 
 <video controls src="video.mp4"></video>
 
@@ -825,6 +842,23 @@ HTML and add `<video>` tag.
 
 ```html
 <video controls src="video.mp4"></video>
+```
+________________________________________________________________________________
+Embed YouTube video.
+
+<iframe width="300" height="150" src="https://www.youtube.com/embed/HUBNt18RFbo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
+?
+
+YouTube videos can be embedded with inline HTML.
+
+```html
+<iframe width="300" height="150" 
+  src="https://www.youtube.com/embed/HUBNt18RFbo" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; encrypted-media; picture-in-picture" 
+  allowfullscreen>
+</iframe>
 ```
 ________________________________________________________________________________
 
