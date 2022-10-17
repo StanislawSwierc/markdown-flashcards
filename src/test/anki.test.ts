@@ -42,12 +42,12 @@ back
     });
 
     it('can transform Markdown deck', async () => {
-        let text = await fs.readFile("../decks/Markdown.md", 'utf-8');
+        let text = await fs.readFile("/Users/stansw/src/markdown-flashcards/decks/Blackjack.md", 'utf-8');
 
-        let buffer = await anki.transform(text);
+        let buffer = await anki.transform(text, { id:"blackjack", url: "https://localhost"});
 
         expect(buffer.length).to.greaterThan(0);
 
-        await fs.writeFile("../decks/Markdown.apkg", buffer, 'binary');
+        await fs.writeFile("/Users/stansw/src/markdown-flashcards/decks/Blackjack.apkg", buffer, 'binary');
     });
 });

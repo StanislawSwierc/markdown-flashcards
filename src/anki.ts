@@ -188,7 +188,7 @@ async function transformHtml(
     options: ExportOptions): Promise<string> {
 
     let dom = new jsdom.JSDOM(html, {
-        url: options.url
+        url: "https://localhost"
     });
 
     let imgs = dom.window.document.querySelectorAll("img");
