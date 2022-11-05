@@ -1,4 +1,5 @@
 {
-    "mochaExplorer.files": "test/**/*.ts",
-    "mochaExplorer.require": "ts-node/register"
+    "mochaExplorer.files": "out/test/**/*.js",
+    "mochaExplorer.require": "source-map-support/register",
+    "mochaExplorer.watch": "out/**/*.js"
 }
