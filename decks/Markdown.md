@@ -1,14 +1,14 @@
 # Markdown
 Markdown is a lightweight markup language with plain text formatting syntax.
 
-This deck usess the following convention to represent signifficant whitespace characters:
+This deck uses the following convention to represent significant whitespace characters:
 * `·` - space 
 * `→` - tab
 * `↵` - new line 
 
 ## Paragraphs
 
----
+________________________________________________________________________________
 Paragraph
 
 Second paragraph
@@ -25,7 +25,7 @@ Second paragraph↵
 
 `↵` - new line 
 
----
+________________________________________________________________________________
 
 Long paragraphs.
 
@@ -47,7 +47,7 @@ aliqua.↵
 
 `↵` - new line 
 
----
+________________________________________________________________________________
 
 Paragraph with line breaks
 
@@ -67,12 +67,12 @@ Third line
 `·` - space \
 `↵` - new line 
 
----
+________________________________________________________________________________
 
 
 ## Headers 
 
----
+________________________________________________________________________________
 
 Headers (e.g. title, section, subsection) with prefix style.
 
@@ -87,7 +87,7 @@ Headers (e.g. title, section, subsection) with prefix style.
 ###### H6
 ```
 
----
+________________________________________________________________________________
 
 Headers (e.g. title, section, subsection) with underline style.
 
@@ -101,11 +101,11 @@ H2 (section)
 ------------
 ```
 
----
+________________________________________________________________________________
 
 ## Fonts
 
----
+________________________________________________________________________________
 
 *Italics font*
 
@@ -117,7 +117,7 @@ Single asterisks or underscores
 _Italics font_
 ```
 
----
+________________________________________________________________________________
 
 **Bold font style**
 
@@ -129,7 +129,7 @@ Double asterisks or underscores
 __Bold font__
 ```
 
----
+________________________________________________________________________________
 
 ***Italics and bold font***
 
@@ -142,7 +142,7 @@ Triple asterisks or any valid combination of asterisks and underscores
 __*Italics and boldfont*__
 ```
 
----
+________________________________________________________________________________
 
 ~~Strikethrough font~~
 
@@ -153,11 +153,11 @@ Double tildes
 ~~Strikethrough font~~
 ```
 
----
+________________________________________________________________________________
 
 ## Lists
 
----
+________________________________________________________________________________
 
 Ordered list
 1. First item
@@ -174,7 +174,7 @@ Start each item with a digit (0-9), followed by either a '`.`' character or a '`
 2) Second item
 ```
 
----
+________________________________________________________________________________
 
 Ordered list (lazy numbering)
 1. First item
@@ -182,14 +182,14 @@ Ordered list (lazy numbering)
 
 ?
 
-When defining ordered list you can repeat the same number (e.g. '`1.`') multiple times and it will be automatically converted to the right number by the Markdown interpretter.
+When defining ordered list you can repeat the same number (e.g. '`1.`') multiple times and it will be automatically converted to the right number by the Markdown interpreter.
 
 ```md
 1. First item
 1. Second item
 ```
 
----
+________________________________________________________________________________
 
 Ordered list with long paragraphs
 1. First sentence of the first paragraph.
@@ -216,7 +216,7 @@ Align all sentences with the beginning of first one by indenting them with 3 spa
 `·` - space \
 `→` - tab
 
----
+________________________________________________________________________________
 
 Ordered list with sub-list
 1. First item
@@ -237,7 +237,7 @@ Align sub-list with the beginning one the parent item by indenting it with 3 spa
 `·` - space \
 `→` - tab
 
----
+________________________________________________________________________________
 
 Mixed ordered and bullet lists
 1. First ordered item
@@ -258,7 +258,7 @@ Align sub-list with the beginning one the parent item by indenting it with 3 spa
 `·` - space \
 `→` - tab
 
----
+________________________________________________________________________________
 
 Bullet list
 - First item
@@ -279,7 +279,7 @@ Start each line with a '`-`', '`*`', or '`+`' character.
 + Second item
 ```
 
----
+________________________________________________________________________________
 
 Bullet list with long paragraphs.
 
@@ -307,7 +307,7 @@ Indent all the lines with 2 spaces or a single tab.
 `·` - space \
 `→` - tab
 
----
+________________________________________________________________________________
 
 Bullet list with sub-list
 - First item
@@ -327,11 +327,11 @@ Indent sub-list with 2-4 spaces or single tab.
 `·` - space \
 `→` - tab
 
----
+________________________________________________________________________________
 
 ## Links
 
----
+________________________________________________________________________________
 
 Inline-style [link](https://www.google.com)
 
@@ -341,7 +341,7 @@ Inline-style [link](https://www.google.com)
 Inline-style [link](https://www.google.com)
 ```
 
----
+________________________________________________________________________________
 
 Inline-style [link](https://www.google.com "Google's Homepage") with title (hover over)
 
@@ -352,7 +352,7 @@ Links can have titles written in double quotes behind the address.
 Inline-style [link](https://www.google.com "Google's Homepage") with title (hover over)
 ```
 
----
+________________________________________________________________________________
 
 Inline-style [link](Markdown.md) to a file in the same folder
 
@@ -363,7 +363,7 @@ To create a link to the file in the same folder, simply write its name.
 Inline-style [link](Markdown.md) to a file in the same folder
 ```
 
----
+________________________________________________________________________________
 
 Inline-style [link](../Readme.md) to a file in the parent folder
 
@@ -375,7 +375,7 @@ Use '`../`' prefix to create a link to the file in a parent folder
 Inline-style [link](../Readme.md) to a file in the parent folder
 ```
 
----
+________________________________________________________________________________
 
 Inline-style [link](./child/Readme.md) to a file in the child folder
 
@@ -386,7 +386,7 @@ Use '`./child`' prefix to create a link to the file in a child folder.
 Inline-style [link](./child/Readme.md) to a file in the child folder
 ```
 
----
+________________________________________________________________________________
 
 
 Reference-style [text link][abc]
@@ -404,7 +404,7 @@ Reference-style [text link][abc]
 
 ```
 
----
+________________________________________________________________________________
 
 Reference-style [number link][1]
 
@@ -420,7 +420,7 @@ Reference-style [number link][1]
 [1]: https://www.google.com
 ```
 
----
+________________________________________________________________________________
 
 Reference-style verbatim [text link]
 
@@ -434,7 +434,7 @@ Reference-style verbatim [text link]
 [text link]: https://www.google.com
 ```
 
----
+________________________________________________________________________________
 
 Reference-style verbatim number link [2]
 
@@ -450,7 +450,7 @@ Reference-style verbatim number link [2]
 
 ## Image
 
----
+________________________________________________________________________________
 
 Inline-style image by a full URL  
 ![](https://www.iconfinder.com/icons/298823/download/png/48)
@@ -462,7 +462,7 @@ Inline-style image by a full URL
 ![](https://www.iconfinder.com/icons/298823/download/png/48)
 ```
 
----
+________________________________________________________________________________
 
 Inline-style image in the same folder  
 ![](logo_48.png)
@@ -474,10 +474,10 @@ Inline-style image in the same folder
 ![](logo_48.png)
 ```
 
----
+________________________________________________________________________________
 
 Inline-style image in the parent folder  
-![](../logo_48.png)
+![](logo_48.png)
 
 ?
 
@@ -486,10 +486,10 @@ Inline-style image in the parent folder
 ![](../logo_48.png)
 ```
 
----
+________________________________________________________________________________
 
 Inline-style image in the child folder  
-![](./child/logo_48.png)
+![](logo_48.png)
 
 ?
 
@@ -498,7 +498,7 @@ Inline-style image in the child folder
 ![](./child/logo_48.png)
 ```
 
----
+________________________________________________________________________________
 
 
 Inline-style image with alternative text  
@@ -512,7 +512,7 @@ Inline-style image with alternative text
 ![image failed to load](missing.png)
 ```
 
----
+________________________________________________________________________________
 
 Inline-style image with title (hover over)  
 ![](logo_48.png "Markdown Logo")
@@ -524,35 +524,46 @@ Inline-style image with title (hover over)
 ![](logo_48.png "Markdown Logo")
 ```
 
----
-
-Reference-style image  
-![][img_local]
+________________________________________________________________________________
+Reference-style image by a full URL  
 ![][img_url]
 
-[img_local]: logo_48.png
 [img_url]: https://www.iconfinder.com/icons/298823/download/png/48
 
 ?
 
-Reference-style images are great for separating long URLs from the main text. You can also use the same image multiple times in the document. Reference identifiers are case-insensitive.
+Reference-style images allow to separate long URLs from the main text. You can also use the same image multiple times in the document. Reference identifiers are case-insensitive.
+
+```md
+Reference-style image  
+![][img_url]
+
+[img_url]: https://www.iconfinder.com/icons/298823/download/png/48
+```
+________________________________________________________________________________
+Reference-style image to a local file  
+![][img_local]
+
+[img_local]: logo_48.png
+
+?
+
+Reference-style images allow to separate long file names from the main text. You can also use the same image multiple times in the document. Reference identifiers are case-insensitive.
 
 ```md
 Reference-style image  
 ![][img_local]
-![][img_url]
 
 [img_local]: logo_48.png
-[img_url]: https://www.iconfinder.com/icons/298823/download/png/48
 ```
 
----
+________________________________________________________________________________
 
 ## Code
 Code blocks are part of the core Markdown spec, but syntax highlighting is only supported in GFM.
 
 
----
+________________________________________________________________________________
 
 Inline `code` in a sentence.
 
@@ -563,7 +574,7 @@ Surround inline code with back-tick characters '`'.
 Inline `code` in a sentence.
 ```
 
----
+________________________________________________________________________________
 
 Code block
 
@@ -584,7 +595,7 @@ code block
 ```
 `·` - space
 
----
+________________________________________________________________________________
 
 Syntax highlighting 
 
@@ -600,12 +611,12 @@ Add the language idetifier after opening back-ticks. Full list of supported lang
     print("Syntax highlighting in Python")
     ```
 
----
+________________________________________________________________________________
 
 ## Tables
 Tables aren't part of the core Markdown spec, but they are part of GFM.
 
----
+________________________________________________________________________________
 Table
 
 | Column 1 | Column 2 |
@@ -624,7 +635,7 @@ Table consists of header and delimiter row followed by rows lines. It can be wri
 | Cell 3   | Cell 4   |
 ```
 
----
+________________________________________________________________________________
 
 Table (required elements)
 
@@ -644,7 +655,7 @@ Cell 1 | Cell 2
 Cell 3 | Cell 4
 ```
 
----
+________________________________________________________________________________
 
 Table with left-aligned column.
 
@@ -664,7 +675,7 @@ All the columns are aligned left by default, but optionally you can make it expl
 | Cell 2              |
 ```
 
----
+________________________________________________________________________________
 
 Table with right-aligned column.
 
@@ -685,7 +696,7 @@ For right alignment add trailing colon '`---: |`' in the delimiter row.
 | Cell 2               |
 ```
 
----
+________________________________________________________________________________
 
 Table with center-aligned column.
 
@@ -706,11 +717,11 @@ For center alignment add both leading and trailing colons '`| :---: |`' in the d
 | Cell 2                |
 ```
 
----
+________________________________________________________________________________
 
 ## Quotes
 
----
+________________________________________________________________________________
 
 Quote
 
@@ -722,7 +733,7 @@ Quote
 > Quote
 ```
 
----
+________________________________________________________________________________
 
 Quote with multiple paragraphs
 
@@ -740,7 +751,7 @@ Quote with multiple paragraphs
 > First sentence of the second paragraph.
 ```
 
----
+________________________________________________________________________________
 
 Long quote.
 
@@ -757,7 +768,7 @@ Second sentence of the quote.
 ```
 
 
----
+________________________________________________________________________________
 
 
 Nested quote
@@ -778,7 +789,7 @@ Quotes can be nested by adding more character '`>`' to the beginning of the line
 
 ## Thematic breaks
 
----
+________________________________________________________________________________
 Horizontal rule.
 
 ?
@@ -796,7 +807,7 @@ ___
 ______
 ```
 
----
+________________________________________________________________________________
 
 ## Multimedia
 
@@ -867,7 +878,7 @@ Math equations are not part of the core Markdown, but many editors do support th
 
 Math equations can be constructed using LaTeX syntax (e.g. [LaTeX/Mathematics](https://en.wikibooks.org/wiki/LaTeX/Mathematics)).
 
----
+________________________________________________________________________________
 
 Inline math expression: $c = \sqrt{a^2 + b^2}$
 
@@ -879,7 +890,7 @@ Inline math expressions can be formatted by surrounding them with '`$`' characte
 Inline math expression: $c = \sqrt{a^2 + b^2}$
 ```
 
----
+________________________________________________________________________________
 
 Block with math equation
 
@@ -901,7 +912,7 @@ or a single line.
 $$ c = \sqrt{a^2 + b^2} $$
 ```
 
----
+________________________________________________________________________________
 
 Block with math equation and numbering
 
@@ -918,13 +929,13 @@ c = \sqrt{a^2 + b^2}
 $$ (1)
 ```
 
----
+________________________________________________________________________________
 
 
 ## Inline HTML
 While not so common, some editors allow for raw HTML in your Markdown.
 
----
+________________________________________________________________________________
 
 Inline HTML
 
@@ -948,4 +959,4 @@ Inline HTML
 </dl>
 ```
 
----
+________________________________________________________________________________
