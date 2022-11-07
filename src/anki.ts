@@ -5,7 +5,7 @@ import * as path from "path";
 import * as jsdom from "jsdom";
 import * as crypto from "crypto"
 import fetch from "node-fetch";
-import * as isUrl from "is-url"
+import isUrl from "is-url"
 
 export async function fromFile(path: string): Promise<Buffer> {
     return null;
@@ -87,6 +87,12 @@ export async function transform(
         `;
     }
 
+    // TODO: Create a separate function for local files.
+    options = {
+        url: "https://example.com/",
+        id: "test"
+    }
+
     let template = {
         questionFormat: `
 <div class="markdown-body">
@@ -102,9 +108,8 @@ export async function transform(
 </div>
 `,
         css: `
-@import url("_css_github-markdown.css");
+@import url("_css_markdown-flashcards.css");
 @import url("_css_katex.css");
-@import url("_css_highlightjs-github.css");
 @import url("_css_font-awesome.min.css");
 
 audio::-webkit-media-controls-current-time-display {
@@ -117,7 +122,6 @@ audio::-webkit-media-controls-time-remaining-display {
 
 .card {
     font-size: 20px;
-    background-color: white;
 }
 `
     };
@@ -132,10 +136,8 @@ audio::-webkit-media-controls-time-remaining-display {
     };
 
     // Add media
-    apkg.addMedia("_css_github-markdown.css", await fs.readFile(
-        "./node_modules/github-markdown-css/github-markdown.css"));
-    apkg.addMedia("_css_highlightjs-github.css", await fs.readFile(
-        "./node_modules/highlight.js/styles/github.css"));
+    apkg.addMedia("_css_markdown-flashcards.css", await fs.readFile(
+        "./resources/markdown-flashcards.css"));
 
     let content = await fs.readFile(
         "./node_modules/katex/dist/katex.css", "utf-8");
@@ -166,7 +168,6 @@ audio::-webkit-media-controls-time-remaining-display {
     for (let section of deck.sections) {
         let tags = [section.name];
         for (let card of section.cards) {
-
             apkg.addCard(
                 await transformHtml(card.front, context, options),
                 await transformHtml(card.back, context, options)
@@ -174,10 +175,7 @@ audio::-webkit-media-controls-time-remaining-display {
         }
     }
 
-
-    // apkg.addCard('card #3 with image <img src="anki.png" />', 'card #3 back');
-
-    return apkg.save();
+    return await apkg.save();
 }
 
 

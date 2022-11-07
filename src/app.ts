@@ -1,10 +1,10 @@
-import * as Markdown from "markdown-it";
-import * as emoji from "markdown-it-emoji";
+import MarkdownIt from "markdown-it";
+import emoji from "markdown-it-emoji";
 import * as jsdom from "jsdom";
-import * as parseFrontMatter from "front-matter";
-import * as katex from "katex";
-import * as texmath from "markdown-it-texmath";
-import * as highlight from "markdown-it-highlightjs";
+import parseFrontMatter from "front-matter";
+import katex from "katex";
+import texmath from "markdown-it-texmath";
+import highlightjs from "markdown-it-highlightjs";
 
 
 interface Card {
@@ -32,15 +32,13 @@ enum State {
   Back
 }
 
-// tslint:disable-next-line: typedef
-let md = new Markdown(
+let md = new MarkdownIt(
   {
     html: true
   })
   .use(emoji)
-  .use(texmath
-    .use(katex))
-  .use(highlight, {
+  .use(texmath.use(katex))
+  .use(highlightjs, {
     auto: false,
     code: false
   });

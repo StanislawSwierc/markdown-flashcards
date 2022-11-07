@@ -39,7 +39,7 @@ back
         expect(buffer.length).to.greaterThan(0);
 
         await fs.writeFile("./test/anki.test.apkg", buffer, 'binary');
-    });
+    }).timeout(5000);
 
     it('can transform Markdown deck', async () => {
         let text = await fs.readFile("/Users/stansw/src/markdown-flashcards/decks/Blackjack.md", 'utf-8');
@@ -48,6 +48,6 @@ back
 
         expect(buffer.length).to.greaterThan(0);
 
-        await fs.writeFile("/Users/stansw/src/markdown-flashcards/decks/Blackjack.apkg", buffer, 'binary');
-    });
+        await fs.writeFile("../decks/Markdown.apkg", buffer, 'binary');
+    }).timeout(10000);
 });
