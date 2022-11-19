@@ -47,6 +47,55 @@ back 2
         expect(card.back).to.equal("<p>back 2</p>");
     });
 
+    it('card with soft line breaks around separator', () => {
+        let text = `
+___
+regular
+?
+back
+___
+indented
+   ?   
+back
+___
+escaped
+\\?
+?
+back
+___
+followed
+? by text
+?
+back
+___
+question
+:question:
+back
+___
+`
+        let deck = app.parse(text);
+        expect(deck.sections.length).to.equal(1);
+
+        let section = deck.sections[0];
+        expect(section.cards.length).to.equal(5);
+
+        expect(section.cards[0].front).to.equal("<p>regular</p>");
+        expect(section.cards[0].back).to.equal("<p>back</p>");
+
+        expect(section.cards[1].front).to.equal("<p>indented</p>");
+        expect(section.cards[1].back).to.equal("<p>back</p>");
+
+        expect(section.cards[2].front).to.equal("<p>escaped\n?</p>");
+        expect(section.cards[2].back).to.equal("<p>back</p>");
+
+        expect(section.cards[3].front).to.equal("<p>followed\n? by text</p>");
+        expect(section.cards[3].back).to.equal("<p>back</p>");
+
+        expect(section.cards[4].front).to.equal("<p>question</p>");
+        expect(section.cards[4].back).to.equal("<p>back</p>");
+    });
+
+
     it('can process single card with trailing whitespace', () => {
         let text = `
 ---

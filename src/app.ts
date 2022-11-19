@@ -34,7 +34,10 @@ enum State {
 
 let md = new MarkdownIt(
   {
-    html: true
+    // GitHub Markdown Flavor has breaks set to false.
+    breaks:false,
+    html: true,
+    linkify: true,
   })
   .use(emoji)
   .use(texmath.use(katex))
@@ -45,6 +48,8 @@ let md = new MarkdownIt(
 
 
 export function parse(text: string): Deck {
+  // Alow for soft line breaks around the separator
+  text = text.replace(/^\s{0,3}(\?|:question:)\s*$/mg, "\n?\n")
 
   let doc = parseFrontMatter(text);
   let html = md.render(doc.body);
