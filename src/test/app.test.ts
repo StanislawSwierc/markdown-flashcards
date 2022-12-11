@@ -44,7 +44,7 @@ back 2
 
         card = section.cards[1];
         expect(card.front).to.equal("<p>front 2</p>");
-        expect(card.back).to.equal("<p>back 2</p>");
+        expect(card.back).to.equal("<p>back break</p>");
     });
 
     it('card with soft line breaks around separator', () => {
