@@ -4,7 +4,8 @@
   "description": "Markdown format for flashcards.",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --timeout 5000 --require ts-node/register test/**/*.js"
+    "build": "tsc --project ./tsconfig.json",
+    "test": "mocha --timeout 5000 --require ts-node/register out/test/**/*.js"
   },
   "author": "Stanislaw Swierc (stanislaw.swierc@gmail.com)",
   "license": "ISC",
