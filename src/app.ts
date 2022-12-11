@@ -10,6 +10,7 @@ import highlightjs from "markdown-it-highlightjs";
 interface Card {
   front: string;
   back: string;
+  tags?: string[]
 }
 
 interface Deck {
@@ -35,7 +36,7 @@ enum State {
 let md = new MarkdownIt(
   {
     // GitHub Markdown Flavor has breaks set to false.
-    breaks:false,
+    breaks: false,
     html: true,
     linkify: true,
   })

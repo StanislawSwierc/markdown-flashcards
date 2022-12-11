@@ -91,3 +91,4 @@ typings/
 *.apkg
 *.js
 *.js.map
+out/

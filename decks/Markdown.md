@@ -452,75 +452,75 @@ Reference-style verbatim number link [2]
 
 ________________________________________________________________________________
 
-Inline-style image by a full URL  
+Image by a full URL  
 ![](https://www.iconfinder.com/icons/298823/download/png/48)
 
 ?
 
 ```md
-Inline-style image by a full URL  
+Image by a full URL  
 ![](https://www.iconfinder.com/icons/298823/download/png/48)
 ```
 
 ________________________________________________________________________________
 
-Inline-style image in the same folder  
+Image in the same folder  
 ![](logo_48.png)
 
 ?
 
 ```md
-Inline-style image in the same folder  
+Image in the same folder  
 ![](logo_48.png)
 ```
 
 ________________________________________________________________________________
 
-Inline-style image in the parent folder  
+Image in the parent folder  
 ![](logo_48.png)
 
 ?
 
 ```md
-Inline-style image in the parent folder  
+Image in the parent folder  
 ![](../logo_48.png)
 ```
 
 ________________________________________________________________________________
 
-Inline-style image in the child folder  
-![](logo_48.png)
+Image in the child folder  
+![](./media/logo_48.png)
 
 ?
 
 ```md
-Inline-style image in the child folder  
-![](./child/logo_48.png)
+Image in the child folder  
+![](./media/logo_48.png)
 ```
 
 ________________________________________________________________________________
 
 
-Inline-style image with alternative text  
+Image with an alternative text  
 ![image failed to load](missing.png)
 
 ?
 
 Alternative text for the image gets shown if the image fails to load (e.g. no internet access).
 ```md
-Inline-style image with alternative text  
+Image with an alternative text  
 ![image failed to load](missing.png)
 ```
 
 ________________________________________________________________________________
 
-Inline-style image with title (hover over)  
+Image with a title (hover over)  
 ![](logo_48.png "Markdown Logo")
 
 ?
 
 ```md
-Inline-style image with title (hover over)  
+Image with a title (appears when hovering over)  
 ![](logo_48.png "Markdown Logo")
 ```
 

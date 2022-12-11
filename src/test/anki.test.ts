@@ -2,13 +2,19 @@ import { expect } from 'chai';
 import * as anki from '../anki';
 import { promises as fs } from "fs";
 import * as fetchMock from "fetch-mock";
+import * as path from "path";
 
-describe("fromUrl", () => {
+describe("fromUrl", function () {
+
+    this.retries(4);
+
+
     it("executes fetch", async () => {
-        let baseUrl = "https://raw.githubusercontent.com/StanislawSwierc/markdown-flashcards/master/";
+        let baseUrl = "https://raw.githubusercontent.com/StanislawSwierc/" +
+            "markdown-flashcards/master/";
 
         //fetchMock.get("*", url => fs.readFile(url.replace(baseUrl, "../"), "utf8"));
-        let buffer = await anki.fromUrl(baseUrl + "decks/Markdown.md");
+        let buffer = await anki.fromUrl(new URL(baseUrl + "decks/Markdown.md"));
         //fetchMock.restore();
 
         await fs.writeFile("../decks/Markdown.apkg", buffer, 'binary');
@@ -16,7 +22,7 @@ describe("fromUrl", () => {
 });
 
 describe('anki', () => {
-    it('can transform deck', async () => {
+    it('can transform deck from string', async function () {
         let text = `
 # title
 deck description
@@ -34,20 +40,18 @@ back
 
 ---
 `
-        let buffer = await anki.transform(text);
+        let buffer = await anki.fromString(text);
 
         expect(buffer.length).to.greaterThan(0);
-
-        await fs.writeFile("./test/anki.test.apkg", buffer, 'binary');
     }).timeout(5000);
 
-    it('can transform Markdown deck', async () => {
-        let text = await fs.readFile("/Users/stansw/src/markdown-flashcards/decks/Blackjack.md", 'utf-8');
-
-        let buffer = await anki.transform(text, { id:"blackjack", url: "https://localhost"});
+    it('can transform Markdown deck', async function () {
+        let deckPath = path.resolve(path.dirname(this.test.file), "../../../decks/Markdown.md");
+        let buffer = await anki.fromPath(deckPath);
 
         expect(buffer.length).to.greaterThan(0);
 
-        await fs.writeFile("../decks/Markdown.apkg", buffer, 'binary');
+        let apkgPath = path.resolve(path.dirname(this.test.file), "Markdown.apkg");
+        await fs.writeFile(apkgPath, buffer, 'binary');
     }).timeout(10000);
 });

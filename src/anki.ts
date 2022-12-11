@@ -5,29 +5,58 @@ import * as path from "path";
 import * as jsdom from "jsdom";
 import * as crypto from "crypto"
 import fetch from "node-fetch";
-import isUrl from "is-url"
+import { pathToFileURL } from "url";
+import { parse as parseURL } from "url";
 
 export async function fromFile(path: string): Promise<Buffer> {
     return null;
 }
 
-export async function fromUrl(url: string): Promise<Buffer> {
-    let response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(
-            `Invalid status ${response.status} ${response.statusText}: ${response.url}`);
+async function fetchByUrl(url: URL): Promise<Buffer> {
+    if (url.protocol === "file:") {
+        return await fs.readFile(url);
     }
 
-    let id = crypto.createHash('md5').update(url).digest('hex');
-    if (url.startsWith("https://raw.githubusercontent.com/")) {
-        id = url.replace(/https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/.*/,
+    if (url.protocol === "http:" || url.protocol === "https:") {
+        let response = await fetch(url);
+        return await response.buffer();
+    }
+
+    throw new Error(`This protocol is not supported ${url.protocol}`);
+}
+
+async function formatId(url: URL): Promise<string> {
+    let urlString = url.toString();
+    let id = crypto.createHash('md5').update(urlString).digest('hex');
+    if (urlString.startsWith("https://raw.githubusercontent.com/")) {
+        id = urlString.replace(/https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/.*/,
             "$1_$2_");
     }
+    return id;
+}
 
-    let text = await response.text();
-    let apkg = await transform(text, {
+export async function fromString(content: string): Promise<Buffer> {
+    let apkg = await transform(content, {
+        id: "buffer",
+        url: "https://localhost",
+        footer: false
+    });
+    return apkg;
+}
+
+export async function fromPath(path: string): Promise<Buffer> {
+    return fromUrl(pathToFileURL(path));
+}
+
+
+export async function fromUrl(url: URL): Promise<Buffer> {
+    let id = await formatId(url);
+    let encoding: BufferEncoding = 'utf8';
+    let content = (await fetchByUrl(url)).toString(encoding);
+
+    let apkg = await transform(content, {
         id: id,
-        url: url,
+        url: url.toString(),
         footer: true
     });
     return apkg;
@@ -85,12 +114,6 @@ export async function transform(
     </a>
 </p>
         `;
-    }
-
-    // TODO: Create a separate function for local files.
-    options = {
-        url: "https://example.com/",
-        id: "test"
     }
 
     let template = {
@@ -186,30 +209,21 @@ async function transformHtml(
     options: ExportOptions): Promise<string> {
 
     let dom = new jsdom.JSDOM(html, {
-        url: "https://localhost"
+        url: options.url.toString()
     });
 
     let imgs = dom.window.document.querySelectorAll("img");
     for (let img of Array.from(imgs)) {
-        if (!isUrl(img.src)) {
-            console.warn(`Image src is not a valid URL: ${img.src}`)
-            continue;
-        }
 
         if (img.src in context.media) {
             img.src = context.media[img.src];
         } else {
             try {
-                let mediaId = options.id + Object.keys(context.media).length.toString();
+                let mediaId = options.id + "_image_" + Object.keys(context.media).length.toString();
+                let imgUrl = new URL(img.src);
+                let buffer = await fetchByUrl(imgUrl);
 
-                let response = await fetch(img.src);
-                if (!response.ok) {
-                    throw new Error(
-                        `Invalid status ${response.status} ${response.statusText}: ${response.url}`);
-                }
-                let imgBlob = await response.arrayBuffer();
-
-                context.package.addMedia(mediaId, imgBlob);
+                context.package.addMedia(mediaId, buffer);
                 context.media[img.src] = mediaId;
                 img.src = mediaId;
             } catch (e) {
