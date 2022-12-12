@@ -4,6 +4,6 @@
         "sourceMap": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
-        "module": "commonjs",
+        "module": "NodeNext",
     }
 }

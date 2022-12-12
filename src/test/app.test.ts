@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import * as app from '../app';
+
+import * as app from '../app.js';
 
 // https://medium.com/@FizzyInTheHall/run-typescript-mocha-tests-in-visual-studio-code-58e62a173575
 
@@ -44,7 +45,7 @@ back 2
 
         card = section.cards[1];
         expect(card.front).to.equal("<p>front 2</p>");
-        expect(card.back).to.equal("<p>back break</p>");
+        expect(card.back).to.equal("<p>back 2</p>");
     });
 
     it('card with soft line breaks around separator', () => {

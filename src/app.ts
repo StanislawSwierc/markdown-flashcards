@@ -42,6 +42,7 @@ let md = new MarkdownIt(
   })
   .use(emoji)
   .use(texmath.use(katex))
+  // @ts-expect-error
   .use(highlightjs, {
     auto: false,
     code: false
@@ -52,6 +53,7 @@ export function parse(text: string): Deck {
   // Alow for soft line breaks around the separator
   text = text.replace(/^\s{0,3}(\?|:question:)\s*$/mg, "\n?\n")
 
+  // @ts-expect-error
   let doc = parseFrontMatter(text);
   let html = md.render(doc.body);
 

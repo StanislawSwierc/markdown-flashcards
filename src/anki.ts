@@ -1,25 +1,25 @@
 import AnkiExport from "anki-apkg-export";
-import * as app from "./app";
 import { promises as fs } from "fs";
 import * as path from "path";
-import * as jsdom from "jsdom";
+import jsdom from "jsdom";
 import * as crypto from "crypto"
-import fetch from "node-fetch";
+import fetch from 'node-fetch';
 import { pathToFileURL } from "url";
-import { parse as parseURL } from "url";
+
+import * as app from "./app.js";
 
 export async function fromFile(path: string): Promise<Buffer> {
     return null;
 }
 
-async function fetchByUrl(url: URL): Promise<Buffer> {
+async function fetchByUrl(url: URL): Promise<ArrayBuffer> {
     if (url.protocol === "file:") {
         return await fs.readFile(url);
     }
 
     if (url.protocol === "http:" || url.protocol === "https:") {
-        let response = await fetch(url);
-        return await response.buffer();
+        let response = await fetch(url.toString());
+        return await response.arrayBuffer();
     }
 
     throw new Error(`This protocol is not supported ${url.protocol}`);
@@ -51,9 +51,9 @@ export async function fromPath(path: string): Promise<Buffer> {
 
 export async function fromUrl(url: URL): Promise<Buffer> {
     let id = await formatId(url);
-    let encoding: BufferEncoding = 'utf8';
-    let content = (await fetchByUrl(url)).toString(encoding);
-
+    // TODO: Add support for other encoding.
+    let enc = new TextDecoder('utf8');
+    let content = enc.decode(await fetchByUrl(url));
     let apkg = await transform(content, {
         id: id,
         url: url.toString(),
@@ -150,8 +150,7 @@ audio::-webkit-media-controls-time-remaining-display {
     };
 
     let deck = app.parse(text);
-    let apkg = new AnkiExport(deck.title, template);
-
+    let apkg = AnkiExport["default"](deck.title, template);
 
     let context: ExportContext = {
         package: apkg,

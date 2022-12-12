@@ -1,8 +1,9 @@
 import { expect } from 'chai';
-import * as anki from '../anki';
 import { promises as fs } from "fs";
 import * as fetchMock from "fetch-mock";
 import * as path from "path";
+
+import * as anki from '../anki.js';
 
 describe("fromUrl", function () {
 
