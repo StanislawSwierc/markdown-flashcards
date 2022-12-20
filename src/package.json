@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "build": "tsc --project ./tsconfig.json",
-    "test": "mocha --timeout 5000 --require ts-node/register out/test/**/*.js"
+    "test": "mocha --timeout 5000 --require ts-node/register test/**/*.js"
   },
   "author": "Stanislaw Swierc (stanislaw.swierc@gmail.com)",
   "license": "ISC",
@@ -29,7 +29,7 @@
   "dependencies": {
     "anki-apkg-export": "^4.0.3",
     "ankiplus": "^1.0.0",
-    "crypto": "^1.0.1",
+    "aws-lambda": "^1.0.7",
     "font-awesome": "^4.7.0",
     "front-matter": "^4.0.2",
     "github-markdown-css": "^5.1.0",

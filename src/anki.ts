@@ -213,12 +213,30 @@ async function transformHtml(
 
     let imgs = dom.window.document.querySelectorAll("img");
     for (let img of Array.from(imgs)) {
-
         if (img.src in context.media) {
             img.src = context.media[img.src];
         } else {
             try {
                 let mediaId = options.id + "_image_" + Object.keys(context.media).length.toString();
+                let imgUrl = new URL(img.src);
+                let buffer = await fetchByUrl(imgUrl);
+
+                context.package.addMedia(mediaId, buffer);
+                context.media[img.src] = mediaId;
+                img.src = mediaId;
+            } catch (e) {
+                console.warn(e);
+            }
+        }
+    }
+
+    let audioTags = dom.window.document.querySelectorAll("audio");
+    for (let img of Array.from(audioTags)) {
+        if (img.src in context.media) {
+            img.src = context.media[img.src];
+        } else {
+            try {
+                let mediaId = options.id + "_audio_" + Object.keys(context.media).length.toString();
                 let imgUrl = new URL(img.src);
                 let buffer = await fetchByUrl(imgUrl);
 

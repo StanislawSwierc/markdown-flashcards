@@ -91,4 +91,6 @@ typings/
 *.apkg
 *.js
 *.js.map
+*.mjs
+*.mjs.map
 out/

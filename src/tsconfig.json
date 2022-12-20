@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "outDir": "out",
         "sourceMap": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
