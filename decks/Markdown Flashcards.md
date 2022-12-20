@@ -1,82 +1,92 @@
 # Markdown Flashcards
 
-*Markdown flashcards* is a convention from preparing flashcard in Markdown and
-a suite of tools to export them to the existing flashcard software (e.g. Anki,
-Quizlet).
+*Markdown Flashcards* is a simple way of creating flashcards with plain text.
+Decks can be openly shared with others and imported to existing flashcard
+software such as Anki.
 
-Since flashcards coupled with spaced repetition are the best tools to aid 
-memorization , what a better way of explaining the convention of creating them
-than in a form of a deck of flashcards! 
+Since flashcards with spaced repetition are one of the best tools to help
+memorize content, we will use flashcards to learn about Markdown Flashcards!
 
-
-## Basics
 ________________________________________________________________________________
-
-Title of the deck
+How to create a card?
 
 ?
 
-You can define the tile of the deck with a level 1 header.
+
+Card consists of Markdown formatted text surrounded by two lines with 3 or
+more underscore characters ('`___`'). Question and answer are separated by a
+line with a question mark '`?`'. 
+
+```md
+___
+How to create a card?
+
+?
+
+Card consists of a Markdown formatted text...
+___
+```
+________________________________________________________________________________
+How to separate question and answer?
+
+:question:
+
+Question and answer can be separated by a line with a plain question mark,
+question mark emoji, or a text representation of the emoji ("`:question:`").
+
+- ?
+- ❓ or `:question:`
+- ❔ or `:grey_question:`
+
+```md
+___
+How to separate question and answer?
+
+:question:
+
+Questions and answers can be separated by...
+___
+```
+________________________________________________________________________________
+Can you use a line with hyphen '---' characters to separate cards?
+
+?
+
+While it is possible to use hyphens '`---`' and stars '`***`' to separate cards,
+it is not recommended because these symbols have additional meaning. If they
+appear directly under an answer they can accidentally turn it into a heading.
+
+
+```md
+---
+Question
+
+?
+
+Heading, not an answer
+---
+```
+________________________________________________________________________________
+How to set title to the deck?
+
+?
+
+
+You can set the tile of the deck with a level 1 header.
 
 ```md
 # Markdown Flashcards
 ```
 ________________________________________________________________________________
 
-Group cards into sections by subject
+How to group cards into sections by subject?
 
 ? 
 
-You can group cars into sections by subjects by using level 2 header.
+You can group cars into sections with level 2 headers.
 
 ```md
 ## Basics
-```
-________________________________________________________________________________
-
-Card
-
-?
-
-Card, in its most basic form consists of Markdown text surrounded by two 
-horizontal rules (line consisting of 3 or more underscore '`_`' characters) and 
-separated by a question mark ('`?`'). Text before the question mark becomes the
-front and the one after becomes the back of the card.
-```md
-___
-
-Card
-
-?
-
-Card, in its most basic form consists of Markdown text surrounded...
-___
-```
-________________________________________________________________________________
-
-Allowed sides separators
-
-?
-
-While '`?`' is the easiest character to type, it is not the most appealing 
-visually. Front and back of the cards can also be separated with other, more
-elaborate symbols.
-
-* ?
-* ↪
-* :question: - `:question:`
-* :grey_question: - `:grey_question:`
-* :arrow_right_hook: - `:arrow_right_hook:`
-
-```md
-___
-
-front
-
-:question:
-
-back
-___
 ```
 ________________________________________________________________________________
 
